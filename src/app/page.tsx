@@ -185,14 +185,14 @@ export default function Home() {
       </section>
 
       {/* ─── SELECTED WORK ─── */}
-      <section className="section">
+      <section className="section section--dark">
         <div className="container">
           <div className={styles.workHeader}>
             <div>
-              <span className="section-label">Selected Work</span>
-              <h2 className="t-h2">Built with purpose.</h2>
+              <span className="section-label section-label--dark">Selected Work</span>
+              <h2 className="t-h2" style={{ color: 'var(--white)' }}>Built with purpose.</h2>
             </div>
-            <Link href="/work" className="btn btn--outline">
+            <Link href="/work" className="btn btn--outline-white">
               View All Work →
             </Link>
           </div>
@@ -201,6 +201,7 @@ export default function Home() {
           <HoverExpandGallery projects={featured} />
         </div>
       </section>
+
 
       {/* ─── WHY NYX ─── */}
       <section className="section section--dark">

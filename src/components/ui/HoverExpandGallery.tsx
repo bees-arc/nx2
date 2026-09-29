@@ -10,224 +10,142 @@ interface HoverExpandGalleryProps {
   projects: Project[];
 }
 
-export default function HoverExpandGallery({ projects }: HoverExpandGalleryProps) {
-  const [hoveredId, setHoveredId] = useState<string | null>(null);
-  const [activeId, setActiveId] = useState<string | null>(null); // mobile tap
+// Minimal browser-window mockup inside each panel
+function PanelMockup({ project }: { project: Project }) {
+  const { mockPalette } = project;
+  return (
+    <div className={styles.mockup} style={{ background: mockPalette.surface }}>
+      {/* Nav bar */}
+      <div className={styles.mockNav} style={{ borderBottom: `1px solid ${mockPalette.primary}18` }}>
+        <div className={styles.mockLogo} style={{ background: mockPalette.primary }} />
+        <div className={styles.mockNavRight}>
+          {[...Array(3)].map((_, i) => (
+            <div key={i} className={styles.mockNavLink} style={{ background: mockPalette.text + '22' }} />
+          ))}
+          <div className={styles.mockNavCta} style={{ background: mockPalette.primary }} />
+        </div>
+      </div>
 
-  const effectiveId = hoveredId ?? activeId;
+      {/* Hero area */}
+      <div className={styles.mockHero} style={{ background: mockPalette.primary + '0E' }}>
+        <div className={styles.mockHeroLeft}>
+          <div className={styles.mockHL} style={{ width: '72%', height: 22, background: mockPalette.primary + 'CC' }} />
+          <div className={styles.mockHL} style={{ width: '88%', height: 22, background: mockPalette.primary + '88' }} />
+          <div className={styles.mockHL} style={{ width: '55%', height: 13, background: mockPalette.primary + '44', marginTop: 6 }} />
+          <div className={styles.mockBtns}>
+            <div className={styles.mockBtn} style={{ background: mockPalette.primary }} />
+            <div className={styles.mockBtnOut} style={{ border: `1.5px solid ${mockPalette.primary}55` }} />
+          </div>
+        </div>
+        <div className={styles.mockHeroImg} style={{ background: mockPalette.primary + '28' }}>
+          <div className={styles.mockImgAccent} style={{ background: mockPalette.secondary + '60' }} />
+        </div>
+      </div>
+
+      {/* Cards row */}
+      <div className={styles.mockCards}>
+        {[...Array(3)].map((_, i) => (
+          <div key={i} className={styles.mockCard} style={{ background: mockPalette.primary + '08' }}>
+            <div className={styles.mockCardTop} style={{ background: mockPalette.secondary + '33' }} />
+            <div className={styles.mockHL} style={{ width: '65%', height: 9, background: mockPalette.text + '33' }} />
+            <div className={styles.mockHL} style={{ width: '80%', height: 7, background: mockPalette.text + '1A' }} />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default function HoverExpandGallery({ projects }: HoverExpandGalleryProps) {
+  const [activeSlug, setActiveSlug] = useState<string>(projects[0]?.slug ?? '');
 
   return (
-    <div
-      className={styles.gallery}
-      onMouseLeave={() => setHoveredId(null)}
-      role="list"
-      aria-label="Project showcase gallery"
-    >
-      {projects.map((project) => {
-        const isExpanded = effectiveId === project.slug;
+    <div className={styles.gallery} role="list" aria-label="Project gallery">
+      {projects.map((project, index) => {
+        const isActive = activeSlug === project.slug;
 
         return (
-          <motion.div
+          <motion.article
             key={project.slug}
-            className={`${styles.panel} ${isExpanded ? styles.panelExpanded : ''}`}
-            animate={{ flex: isExpanded ? 3.5 : 1 }}
-            transition={{ type: 'spring', stiffness: 280, damping: 28, mass: 0.9 }}
-            onMouseEnter={() => setHoveredId(project.slug)}
-            onClick={() =>
-              setActiveId(activeId === project.slug ? null : project.slug)
-            }
+            className={`${styles.panel} ${isActive ? styles.panelActive : ''}`}
+            animate={{ flex: isActive ? 4.5 : 1 }}
+            transition={{ type: 'spring', stiffness: 260, damping: 30, mass: 1 }}
+            onMouseEnter={() => setActiveSlug(project.slug)}
+            onClick={() => setActiveSlug(project.slug)}
             role="listitem"
-            aria-expanded={isExpanded}
-            style={
-              {
-                '--panel-accent': project.accentColor,
-                '--panel-bg': project.bgColor,
-              } as React.CSSProperties
-            }
+            aria-label={project.name}
           >
-            {/* Background layer */}
-            <div className={styles.panelBg} />
-
-            {/* Browser mockup (always visible, scales) */}
-            <div className={styles.mockupWrap}>
-              <div className={styles.browserFrame}>
-                <div className={styles.browserBar}>
-                  <div className={styles.browserDots}>
-                    <span /><span /><span />
-                  </div>
-                  <div className={styles.browserUrl}>
-                    {project.client.toLowerCase().replace(/\s+/g, '')}.com
-                  </div>
-                </div>
-                <div className={styles.browserBody}>
-                  {/* Nav */}
-                  <div className={styles.mockNav}>
-                    <div
-                      className={styles.mockLogo}
-                      style={{ background: project.accentColor + 'CC' }}
-                    />
-                    <div className={styles.mockNavLinks}>
-                      {[...Array(3)].map((_, i) => (
-                        <div key={i} className={styles.mockNavLink} />
-                      ))}
-                    </div>
-                    <div
-                      className={styles.mockNavBtn}
-                      style={{ background: project.accentColor }}
-                    />
-                  </div>
-
-                  {/* Hero */}
-                  <div
-                    className={styles.mockHero}
-                    style={{ background: project.accentColor + '18' }}
-                  >
-                    <div className={styles.mockHeroText}>
-                      <div
-                        className={styles.mockLine}
-                        style={{
-                          width: '65%',
-                          height: '18px',
-                          background: project.accentColor + 'BB',
-                        }}
-                      />
-                      <div
-                        className={styles.mockLine}
-                        style={{
-                          width: '80%',
-                          height: '18px',
-                          background: project.accentColor + '77',
-                        }}
-                      />
-                      <div
-                        className={styles.mockLine}
-                        style={{
-                          width: '50%',
-                          height: '11px',
-                          background: project.accentColor + '44',
-                          marginTop: '4px',
-                        }}
-                      />
-                      <div className={styles.mockBtns}>
-                        <div
-                          className={styles.mockBtn}
-                          style={{ background: project.accentColor }}
-                        />
-                        <div
-                          className={styles.mockBtnOut}
-                          style={{ borderColor: project.accentColor + '55' }}
-                        />
-                      </div>
-                    </div>
-                    <div
-                      className={styles.mockHeroImg}
-                      style={{ background: project.accentColor + '28' }}
-                    />
-                  </div>
-
-                  {/* Cards */}
-                  <div className={styles.mockCards}>
-                    {[...Array(3)].map((_, i) => (
-                      <div key={i} className={styles.mockCard}>
-                        <div
-                          className={styles.mockCardTop}
-                          style={{ background: project.accentColor + '22' }}
-                        />
-                        <div className={styles.mockLine} style={{ width: '70%', height: '8px' }} />
-                        <div className={styles.mockLine} style={{ width: '85%', height: '7px' }} />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Collapsed label (visible when not expanded) */}
+            {/* ── COLLAPSED STATE: vertical rotated label ── */}
             <AnimatePresence>
-              {!isExpanded && (
+              {!isActive && (
                 <motion.div
-                  className={styles.collapsedLabel}
+                  className={styles.collapsedContent}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  transition={{ duration: 0.2 }}
+                  transition={{ duration: 0.18 }}
                 >
-                  <span
-                    className={styles.collapsedNum}
-                    style={{ color: project.accentColor }}
-                  >
-                    0{projects.indexOf(project) + 1}
+                  <span className={styles.collapsedIndex}>
+                    {String(index + 1).padStart(2, '0')}
                   </span>
-                  <span className={styles.collapsedTitle}>{project.name}</span>
+                  <span className={styles.collapsedName}>{project.name}</span>
+                  <span className={styles.collapsedIndustry}>{project.industry}</span>
                 </motion.div>
               )}
             </AnimatePresence>
 
-            {/* Expanded overlay with project info */}
+            {/* ── EXPANDED STATE: full content ── */}
             <AnimatePresence>
-              {isExpanded && (
+              {isActive && (
                 <motion.div
-                  className={styles.expandedInfo}
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 8 }}
-                  transition={{ duration: 0.3, delay: 0.1 }}
+                  className={styles.expandedContent}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.25, delay: 0.08 }}
                 >
-                  <div className={styles.expandedTop}>
-                    <div className={styles.expandedMeta}>
-                      <span
-                        className={styles.expandedIndustry}
-                        style={{ color: project.accentColor }}
-                      >
-                        {project.industry}
-                      </span>
-                      {!project.isLive && (
-                        <span className={styles.conceptBadge}>Concept</span>
-                      )}
-                    </div>
-                    <h3 className={styles.expandedTitle}>{project.name}</h3>
-                    <p className={styles.expandedTagline}>{project.tagline}</p>
+                  {/* Year label — left side, rotated */}
+                  <div className={styles.yearLabel}>{project.year}</div>
+
+                  {/* Main visual mockup */}
+                  <div className={styles.visualArea}>
+                    <PanelMockup project={project} />
+                    {!project.isLive && (
+                      <div className={styles.conceptSticker}>
+                        <span>Concept</span>
+                      </div>
+                    )}
                   </div>
 
-                  <div className={styles.expandedBottom}>
-                    <div className={styles.expandedServices}>
-                      {project.services.map((s) => (
-                        <span key={s} className={styles.serviceTag}>{s}</span>
-                      ))}
+                  {/* Bottom info bar */}
+                  <div className={styles.infoBar}>
+                    <div className={styles.infoLeft}>
+                      <p className={styles.infoIndustry}>{project.industry}</p>
+                      <h3 className={styles.infoName}>{project.name}</h3>
+                      <p className={styles.infoTagline}>{project.tagline}</p>
                     </div>
-                    <Link
-                      href={`/work/${project.slug}`}
-                      className={styles.expandedCta}
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      View Case Study
-                      <svg
-                        width="14"
-                        height="14"
-                        viewBox="0 0 14 14"
-                        fill="none"
-                        aria-hidden="true"
+                    <div className={styles.infoRight}>
+                      <div className={styles.infoServices}>
+                        {project.services.map((s) => (
+                          <span key={s} className={styles.serviceChip}>{s}</span>
+                        ))}
+                      </div>
+                      <Link
+                        href={`/work/${project.slug}`}
+                        className={styles.cta}
+                        onClick={(e) => e.stopPropagation()}
                       >
-                        <path
-                          d="M2 7h10M7 2l5 5-5 5"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </Link>
+                        View Case Study
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                          <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      </Link>
+                    </div>
                   </div>
                 </motion.div>
               )}
             </AnimatePresence>
-
-            {/* Hover gradient sweep */}
-            <div
-              className={styles.hoverGlow}
-              style={{ background: `radial-gradient(ellipse 60% 80% at 50% 100%, ${project.accentColor}18 0%, transparent 70%)` }}
-            />
-          </motion.div>
+          </motion.article>
         );
       })}
     </div>
