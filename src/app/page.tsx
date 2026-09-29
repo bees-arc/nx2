@@ -185,7 +185,8 @@ export default function Home() {
       </section>
 
       {/* ─── SELECTED WORK ─── */}
-      <section className="section section--dark">
+      <section className={styles.workSection}>
+        {/* Header stays in container */}
         <div className="container">
           <div className={styles.workHeader}>
             <div>
@@ -196,10 +197,10 @@ export default function Home() {
               View All Work →
             </Link>
           </div>
-
-          {/* Skiper35-style hover-expand gallery */}
-          <HoverExpandGallery projects={featured} />
         </div>
+
+        {/* Gallery bleeds full width */}
+        <HoverExpandGallery projects={featured} />
       </section>
 
 

@@ -74,9 +74,19 @@
   border-color: var(--ink);
 }
 
-/* ─── WORK SECTION ─── */
+/* ─── WORK SECTION (FULL VIEWPORT) ─── */
 
-.workSection { padding-top: 4rem; }
+.workSection {
+  width: 100%;
+  height: 100vh;
+  min-height: 700px;
+  background: #0A0A09;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 .projectGrid {
   display: grid;
@@ -363,4 +373,11 @@
 @media (max-width: 900px) {
   .projectGrid { grid-template-columns: 1fr; }
   .projectCardHero { grid-column: unset; }
+}
+
+@media (max-width: 768px) {
+  .workSection {
+    height: auto;
+    min-height: auto;
+  }
 }
