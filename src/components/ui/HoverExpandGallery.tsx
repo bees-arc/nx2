@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { Project } from '@/data/projects';
@@ -58,96 +58,151 @@ function PanelMockup({ project }: { project: Project }) {
 
 export default function HoverExpandGallery({ projects }: HoverExpandGalleryProps) {
   const [activeSlug, setActiveSlug] = useState<string>(projects[0]?.slug ?? '');
+  const galleryRef = useRef<HTMLDivElement>(null);
+  const panelRefs = useRef<Record<string, HTMLElement | null>>({});
+
+  const currentIndex = projects.findIndex((p) => p.slug === activeSlug);
+
+  const selectProject = (slug: string) => {
+    setActiveSlug(slug);
+    const el = panelRefs.current[slug];
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+    }
+  };
+
+  const handlePrev = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const prevIdx = (currentIndex - 1 + projects.length) % projects.length;
+    selectProject(projects[prevIdx].slug);
+  };
+
+  const handleNext = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const nextIdx = (currentIndex + 1) % projects.length;
+    selectProject(projects[nextIdx].slug);
+  };
 
   return (
-    <div className={styles.gallery} role="list" aria-label="Project gallery">
-      {projects.map((project, index) => {
-        const isActive = activeSlug === project.slug;
+    <div className={styles.galleryWrapper}>
+      {/* Floating HUD navigation pill */}
+      <div className={styles.galleryNav}>
+        <button
+          onClick={handlePrev}
+          aria-label="Previous project"
+          className={styles.navBtn}
+        >
+          ‹
+        </button>
+        <span className={styles.navCount}>
+          {String(Math.max(1, currentIndex + 1)).padStart(2, '0')} / {String(projects.length).padStart(2, '0')}
+        </span>
+        <button
+          onClick={handleNext}
+          aria-label="Next project"
+          className={styles.navBtn}
+        >
+          ›
+        </button>
+      </div>
 
-        return (
-          <motion.article
-            key={project.slug}
-            className={`${styles.panel} ${isActive ? styles.panelActive : ''}`}
-            animate={{ flex: isActive ? 4.5 : 1 }}
-            transition={{ type: 'spring', stiffness: 260, damping: 30, mass: 1 }}
-            onMouseEnter={() => setActiveSlug(project.slug)}
-            onClick={() => setActiveSlug(project.slug)}
-            role="listitem"
-            aria-label={project.name}
-          >
-            {/* ── COLLAPSED STATE: vertical rotated label ── */}
-            <AnimatePresence>
-              {!isActive && (
-                <motion.div
-                  className={styles.collapsedContent}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.18 }}
-                >
-                  <span className={styles.collapsedIndex}>
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
-                  <span className={styles.collapsedName}>{project.name}</span>
-                  <span className={styles.collapsedIndustry}>{project.industry}</span>
-                </motion.div>
-              )}
-            </AnimatePresence>
+      <div
+        ref={galleryRef}
+        className={styles.gallery}
+        role="list"
+        aria-label="Project gallery"
+      >
+        {projects.map((project, index) => {
+          const isActive = activeSlug === project.slug;
 
-            {/* ── EXPANDED STATE: full content ── */}
-            <AnimatePresence>
-              {isActive && (
-                <motion.div
-                  className={styles.expandedContent}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.25, delay: 0.08 }}
-                >
-                  {/* Year label — left side, rotated */}
-                  <div className={styles.yearLabel}>{project.year}</div>
+          return (
+            <motion.article
+              key={project.slug}
+              ref={(el) => {
+                panelRefs.current[project.slug] = el;
+              }}
+              className={`${styles.panel} ${isActive ? styles.panelActive : ''}`}
+              animate={{ flex: isActive ? 6 : 1 }}
+              transition={{ type: 'spring', stiffness: 260, damping: 30, mass: 1 }}
+              onMouseEnter={() => selectProject(project.slug)}
+              onClick={() => selectProject(project.slug)}
+              role="listitem"
+              aria-label={project.name}
+            >
+              {/* ── COLLAPSED STATE: vertical rotated label ── */}
+              <AnimatePresence>
+                {!isActive && (
+                  <motion.div
+                    className={styles.collapsedContent}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.18 }}
+                  >
+                    <span className={styles.collapsedIndex}>
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                    <span className={styles.collapsedName}>{project.name}</span>
+                    <span className={styles.collapsedIndustry}>{project.industry}</span>
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
-                  {/* Main visual mockup */}
-                  <div className={styles.visualArea}>
-                    <PanelMockup project={project} />
-                    {!project.isLive && (
-                      <div className={styles.conceptSticker}>
-                        <span>Concept</span>
-                      </div>
-                    )}
-                  </div>
+              {/* ── EXPANDED STATE: full content ── */}
+              <AnimatePresence>
+                {isActive && (
+                  <motion.div
+                    className={styles.expandedContent}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.25, delay: 0.08 }}
+                  >
+                    {/* Year label — left side, rotated */}
+                    <div className={styles.yearLabel}>{project.year}</div>
 
-                  {/* Bottom info bar */}
-                  <div className={styles.infoBar}>
-                    <div className={styles.infoLeft}>
-                      <p className={styles.infoIndustry}>{project.industry}</p>
-                      <h3 className={styles.infoName}>{project.name}</h3>
-                      <p className={styles.infoTagline}>{project.tagline}</p>
+                    {/* Main visual mockup */}
+                    <div className={styles.visualArea}>
+                      <PanelMockup project={project} />
+                      {!project.isLive && (
+                        <div className={styles.conceptSticker}>
+                          <span>Concept</span>
+                        </div>
+                      )}
                     </div>
-                    <div className={styles.infoRight}>
-                      <div className={styles.infoServices}>
-                        {project.services.map((s) => (
-                          <span key={s} className={styles.serviceChip}>{s}</span>
-                        ))}
+
+                    {/* Bottom info bar */}
+                    <div className={styles.infoBar}>
+                      <div className={styles.infoLeft}>
+                        <p className={styles.infoIndustry}>{project.industry}</p>
+                        <h3 className={styles.infoName}>{project.name}</h3>
+                        <p className={styles.infoTagline}>{project.tagline}</p>
                       </div>
-                      <Link
-                        href={`/work/${project.slug}`}
-                        className={styles.cta}
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        View Case Study
-                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                          <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                      </Link>
+                      <div className={styles.infoRight}>
+                        <div className={styles.infoServices}>
+                          {project.services.map((s) => (
+                            <span key={s} className={styles.serviceChip}>{s}</span>
+                          ))}
+                        </div>
+                        <Link
+                          href={`/work/${project.slug}`}
+                          className={styles.cta}
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          View Case Study
+                          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                            <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                          </svg>
+                        </Link>
+                      </div>
                     </div>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </motion.article>
-        );
-      })}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.article>
+          );
+        })}
+      </div>
     </div>
   );
 }
