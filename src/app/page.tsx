@@ -132,9 +132,9 @@ export default function Home() {
       {/* ─── WHAT NYX DOES: SKIPER6 HOVER MEMBERS INTERACTION ─── */}
       <HoverMemberServices
         defaultName="SERVICES"
-        backgroundColor="#121212"
-        hoverTextColor="#EF4444"
-        cursorColor="#EF4444"
+        backgroundColor="#0E0E0C"
+        hoverTextColor="#3B82F6"
+        cursorColor="#2563EB"
       />
 
       {/* ─── SELECTED WORK TOPIC (Outside the shelf section) ─── */}
