@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import styles from './Header.module.css';
 
@@ -32,13 +33,29 @@ export default function Header() {
     return () => { document.body.style.overflow = ''; };
   }, [menuOpen]);
 
+  const isDarkTheme = (pathname === '/' && !scrolled);
+
   return (
     <>
-      <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
+      <header className={`${styles.header} ${scrolled ? styles.scrolled : ''} ${isDarkTheme ? styles.darkTheme : styles.lightTheme}`}>
         <div className={styles.inner}>
           <Link href="/" className={styles.logo} aria-label="NYX – Home">
-            <span className={styles.logoText}>NYX</span>
-            <span className={styles.logoDot} />
+            <Image
+              src="/images/logo-dark.png"
+              alt="NYX"
+              width={116}
+              height={47}
+              className={`${styles.logoImg} ${styles.logoDark}`}
+              priority
+            />
+            <Image
+              src="/images/logo-light.png"
+              alt="NYX"
+              width={116}
+              height={47}
+              className={`${styles.logoImg} ${styles.logoLight}`}
+              priority
+            />
           </Link>
 
           <nav className={styles.nav} aria-label="Main navigation">

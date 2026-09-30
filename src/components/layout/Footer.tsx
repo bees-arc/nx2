@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import styles from './Footer.module.css';
 
 const footerNav = [
@@ -58,8 +59,13 @@ export default function Footer() {
           {/* Brand */}
           <div className={styles.brand}>
             <Link href="/" className={styles.logo}>
-              <span className={styles.logoText}>NYX</span>
-              <span className={styles.logoDot} />
+              <Image
+                src="/images/logo-dark.png"
+                alt="NYX"
+                width={120}
+                height={49}
+                className={styles.logoImg}
+              />
             </Link>
             <p className={styles.tagline}>
               Digital experiences built to perform.

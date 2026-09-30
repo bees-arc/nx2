@@ -28,23 +28,13 @@
 .logo {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  text-decoration: none;
 }
 
-.logoText {
-  font-size: 1.375rem;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  color: var(--white);
-  font-family: var(--font);
-}
-
-.logoDot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--nyx-blue);
-  margin-bottom: 12px;
+.logoImg {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
 }
 
 .tagline {

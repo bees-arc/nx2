@@ -19,6 +19,14 @@ export const metadata: Metadata = {
   },
   description:
     "NYX is a digital design studio building websites and UI/UX experiences that turn attention into action. Website Design, Development & UI/UX.",
+  icons: {
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/images/favicon.jpeg', type: 'image/jpeg' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: '/images/favicon.jpeg',
+  },
   keywords: ["website design", "web development", "UI/UX design", "digital agency", "NYX"],
   authors: [{ name: "NYX Studio" }],
   creator: "NYX Studio",

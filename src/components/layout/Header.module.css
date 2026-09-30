@@ -29,24 +29,56 @@
 .logo {
   display: flex;
   align-items: center;
-  gap: 4px;
   text-decoration: none;
+  line-height: 1;
 }
 
-.logoText {
-  font-size: 1.375rem;
-  font-weight: 800;
-  letter-spacing: -0.03em;
+.logoImg {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  transition: opacity 0.25s ease;
+}
+
+/* Theme Switching */
+.darkTheme .logoDark {
+  display: block;
+}
+.darkTheme .logoLight {
+  display: none;
+}
+.darkTheme .navLink {
+  color: rgba(255, 255, 255, 0.75);
+}
+.darkTheme .navLink:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+.darkTheme .navLink.active {
+  color: #ffffff;
+}
+.darkTheme .menuToggle span {
+  background: #ffffff;
+}
+
+.lightTheme .logoDark {
+  display: none;
+}
+.lightTheme .logoLight {
+  display: block;
+}
+.lightTheme .navLink {
+  color: var(--dark-muted);
+}
+.lightTheme .navLink:hover {
   color: var(--ink);
-  font-family: var(--font);
+  background: var(--light-gray);
 }
-
-.logoDot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--nyx-blue);
-  margin-bottom: 12px;
+.lightTheme .navLink.active {
+  color: var(--ink);
+}
+.lightTheme .menuToggle span {
+  background: var(--ink);
 }
 
 /* Desktop Nav */
