@@ -418,23 +418,22 @@ export default function HoverMemberServices({
               initial="hidden"
               animate="visible"
               exit="exit"
-              transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
+              transition={{ duration: 0.7, ease: [0.19, 1, 0.22, 1] }}
             >
               <h2 className={`${styles.mainTitle} ${styles.defaultTitle}`}>
                 {Array.from(defaultName).map((char, i) => (
-                  <span key={i} className={styles.charWrapper}>
-                    <motion.span
-                      className={styles.charSpan}
-                      variants={letterVariantsDefault}
-                      transition={{
-                        duration: 0.8,
-                        ease: [0.19, 1, 0.22, 1],
-                        delay: getDelay(i, defaultName.length),
-                      }}
-                    >
-                      {char === ' ' ? '\u00a0' : char}
-                    </motion.span>
-                  </span>
+                  <motion.span
+                    key={i}
+                    className={styles.charSpan}
+                    variants={letterVariantsDefault}
+                    transition={{
+                      duration: 0.7,
+                      ease: [0.19, 1, 0.22, 1],
+                      delay: getDelay(i, defaultName.length),
+                    }}
+                  >
+                    {char === ' ' ? '\u00a0' : char}
+                  </motion.span>
                 ))}
               </h2>
             </motion.div>
@@ -451,29 +450,28 @@ export default function HoverMemberServices({
                 initial="hidden"
                 animate="visible"
                 exit="exit"
-                transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
+                transition={{ duration: 0.7, ease: [0.19, 1, 0.22, 1] }}
               >
                 <h2
                   className={`${styles.mainTitle} ${styles.hoverTitle}`}
                   style={{
                     color: item.accentColor,
-                    textShadow: `0 0 60px ${item.accentColor}50`,
+                    textShadow: `0 0 50px ${item.accentColor}40`,
                   }}
                 >
                   {Array.from(item.name).map((char, i) => (
-                    <span key={i} className={styles.charWrapper}>
-                      <motion.span
-                        className={styles.charSpan}
-                        variants={letterVariantsIn}
-                        transition={{
-                          duration: 0.8,
-                          ease: [0.19, 1, 0.22, 1],
-                          delay: getDelay(i, item.name.length),
-                        }}
-                      >
-                        {char === ' ' ? '\u00a0' : char}
-                      </motion.span>
-                    </span>
+                    <motion.span
+                      key={i}
+                      className={styles.charSpan}
+                      variants={letterVariantsIn}
+                      transition={{
+                        duration: 0.7,
+                        ease: [0.19, 1, 0.22, 1],
+                        delay: getDelay(i, item.name.length),
+                      }}
+                    >
+                      {char === ' ' ? '\u00a0' : char}
+                    </motion.span>
                   ))}
                 </h2>
               </motion.div>
@@ -482,10 +480,32 @@ export default function HoverMemberServices({
         ))}
       </div>
 
+      {/* ─── SERVICE DESCRIPTION (SMOOTH CROSSFADE) ─── */}
+      <div className={styles.descriptionWrapper}>
+        <AnimatePresence mode="wait">
+          <motion.p
+            key={activeService ? activeService.id : 'default-desc'}
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.25, ease: 'easeOut' }}
+            className={styles.serviceDescText}
+          >
+            {activeService
+              ? activeService.desc
+              : 'End-to-end digital solutions — high-performance websites, research-backed interfaces, motion design, and scalable web engineering.'}
+          </motion.p>
+        </AnimatePresence>
+      </div>
+
       {/* ─── SLEEK STATIC FOOTER CAPABILITY LINK ─── */}
       <div className={styles.sectionBottom}>
-        <Link href="/services" className={styles.exploreLink}>
-          Explore all services & capabilities <span className={styles.linkArrow}>→</span>
+        <Link
+          href={activeService ? activeService.href : '/services'}
+          className={styles.exploreLink}
+        >
+          {activeService ? `Explore ${activeService.shortName}` : 'Explore all capabilities'}{' '}
+          <span className={styles.linkArrow}>→</span>
         </Link>
       </div>
     </section>

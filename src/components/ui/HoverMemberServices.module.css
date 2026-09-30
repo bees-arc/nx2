@@ -213,14 +213,12 @@
 .typographyViewport {
   position: relative;
   width: 100%;
-  height: 24vw;
-  min-height: 170px;
-  max-height: 330px;
+  height: clamp(90px, 13vw, 140px);
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 1.5rem 0;
+  margin: 0.5rem 0;
   z-index: 10;
 }
 
@@ -241,20 +239,13 @@
 .mainTitle {
   margin: 0;
   user-select: none;
-  font-size: clamp(3rem, 10vw, 11rem);
+  font-size: clamp(2.2rem, 5.8vw, 6.4rem);
   font-weight: 900;
   text-transform: uppercase;
-  line-height: 0.95;
-  letter-spacing: -0.04em;
+  line-height: 1;
+  letter-spacing: -0.035em;
   white-space: nowrap;
   font-family: var(--font), system-ui, -apple-system, sans-serif;
-}
-
-.charWrapper {
-  display: inline-block;
-  overflow: hidden;
-  vertical-align: top;
-  line-height: 1;
 }
 
 .charSpan {
@@ -269,6 +260,28 @@
 
 .hoverTitle {
   transition: color 0.2s, text-shadow 0.2s;
+}
+
+/* ─── SERVICE DESCRIPTION (BOTTOM) ─── */
+.descriptionWrapper {
+  min-height: 44px;
+  max-width: 620px;
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 10;
+  margin: 0.25rem auto 1.25rem;
+}
+
+.serviceDescText {
+  margin: 0;
+  font-size: clamp(0.85rem, 1.1vw, 0.98rem);
+  line-height: 1.5;
+  color: rgba(241, 241, 241, 0.65);
+  font-weight: 400;
+  letter-spacing: -0.01em;
 }
 
 /* ─── SECTION BOTTOM LINK ─── */
