@@ -1,543 +1,155 @@
 /* ═══════════════════════════════════════════
-   NYX — Editorial Bookshelf Experience
-   Books lined up on an architectural shelf.
-   Hovering a spine pulls the book forward.
+   Skiper35 Exact 1:1 CSS Styles from skiper-ui.com/v1/skiper35
+   Background: #121212 | Text: #F1F1F1 | Large font size
    ═══════════════════════════════════════════ */
 
-/* ── SHELF CONTAINER ── */
-.shelfContainer {
-  position: relative;
+.skiperSection {
+  height: 600px;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  background: #080807;
+  background-color: #121212;
+  color: #F1F1F1;
+  position: relative;
   overflow: hidden;
 }
 
-/* Ambient shadow cast from the shelf bay ceiling above */
-.shelfTopShadow {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 36px;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
-  pointer-events: none;
-  z-index: 20;
-}
-
-/* ── GALLERY WRAPPER ── */
-.galleryWrapper {
-  position: relative;
-  width: 100%;
-  height: 580px;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  background: #080807;
-}
-
-/* ── FLOATING HUD NAVIGATION ── */
-.galleryNav {
-  position: absolute;
-  top: 1.25rem;
-  right: 1.75rem;
-  display: flex;
-  align-items: center;
-  gap: 0.625rem;
-  background: rgba(14, 14, 12, 0.85);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 100px;
-  padding: 0.35rem 0.875rem;
-  z-index: 25;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-}
-
-.navBtn {
-  background: transparent;
-  border: none;
-  color: var(--white);
-  font-size: 1.125rem;
-  line-height: 1;
-  cursor: pointer;
-  padding: 0 0.25rem;
-  opacity: 0.7;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.navBtn:hover {
-  opacity: 1;
-  transform: scale(1.15);
-}
-
-.navCount {
-  font-size: 0.6875rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  color: rgba(255, 255, 255, 0.6);
-  font-family: var(--font);
-  user-select: none;
-}
-
-/* ── GALLERY ROW OF BOOKS ── */
-.gallery {
-  display: flex;
-  width: 100%;
+.skiperContainer {
   height: 100%;
+  width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
-  background: #080807;
-  padding-top: 28px; /* space for books to lift up when active */
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
 }
 
-.gallery::-webkit-scrollbar {
-  height: 3px;
+.skiperContainer::-webkit-scrollbar {
+  height: 4px;
 }
 
-.gallery::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.gallery::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
+.skiperContainer::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
   border-radius: 4px;
 }
 
-/* ── BOOK SPINE PANEL ── */
+.skiperRow {
+  margin: 0 auto;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: row;
+  min-width: 1600px;
+}
+
 .panel {
   position: relative;
   height: 100%;
-  background: #0D0D0C;
   cursor: pointer;
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
   overflow: hidden;
-  display: flex;
-  align-items: stretch;
-  min-width: 48px;
+  flex-shrink: 0;
   user-select: none;
-  border-radius: 4px 4px 0 0;
-  border-right: 1px solid rgba(0, 0, 0, 0.6);
-  border-left: 1px solid rgba(255, 255, 255, 0.04);
-  /* 3D cylindrical lighting mimicking real rounded book spine */
-  background: linear-gradient(
-    90deg,
-    rgba(0, 0, 0, 0.5) 0%,
-    rgba(255, 255, 255, 0.03) 25%,
-    rgba(255, 255, 255, 0.06) 50%,
-    rgba(255, 255, 255, 0.02) 75%,
-    rgba(0, 0, 0, 0.55) 100%
-  ), #111110;
-  box-shadow: inset -2px 0 6px rgba(0, 0, 0, 0.6), inset 2px 0 6px rgba(255, 255, 255, 0.03);
-  transition: background 0.25s ease;
-}
-
-.panel:hover {
-  background: linear-gradient(
-    90deg,
-    rgba(0, 0, 0, 0.4) 0%,
-    rgba(255, 255, 255, 0.07) 30%,
-    rgba(255, 255, 255, 0.1) 50%,
-    rgba(255, 255, 255, 0.05) 70%,
-    rgba(0, 0, 0, 0.45) 100%
-  ), #181816;
 }
 
 .panel:last-child {
   border-right: none;
 }
 
-/* Active "Pulled Book" state */
-.panelActive {
-  background: #0A0A09 !important;
-  z-index: 15;
-  box-shadow: -12px 0 32px rgba(0, 0, 0, 0.85), 12px 0 32px rgba(0, 0, 0, 0.85);
-  border-radius: 6px 6px 0 0;
-  border-left: 1px solid rgba(255, 255, 255, 0.15);
-  border-right: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-/* ── BOOKMARK RIBBON ── */
-.spineRibbon {
+/* 
+  Exact Skiper35 label row:
+  text-xl font-medium leading-[2.6vw] tracking-[-0.03em] md:-rotate-90 md:text-[2vw]
+*/
+.labelRow {
   position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 12px;
-  height: 8px;
-  border-radius: 0 0 3px 3px;
-  z-index: 5;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-/* ── COLLAPSED BOOK SPINE CONTENT ── */
-.collapsedContent {
-  width: 100%;
-  height: 100%;
+  bottom: 0;
+  left: 20px;
   display: flex;
-  flex-direction: column;
+  width: calc(600px - 2.6vw);
+  transform-origin: 0 50%;
+  transform: rotate(-90deg);
   justify-content: space-between;
-  align-items: center;
-  padding: 1.25rem 0.35rem 1.75rem 0.35rem;
-  overflow: hidden;
-}
-
-.spineTopMeta {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.35rem;
-  width: 100%;
-}
-
-.spineIndex {
-  font-size: 0.625rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  color: rgba(255, 255, 255, 0.3);
-  font-family: var(--font);
-}
-
-/* Classic debossed book spine bands (ribbing) */
-.spineBands,
-.spineBottomBands {
-  width: 60%;
-  height: 4px;
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-.spineTitleWrap {
-  flex: 1;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  padding-bottom: 0.75rem;
-  overflow: hidden;
-}
-
-.collapsedName {
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  transform: rotate(180deg);
-  font-size: 0.9375rem;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.65);
-  letter-spacing: 0.04em;
-  font-family: var(--font);
-  white-space: nowrap;
+  padding-right: 1.5rem;
+  font-size: clamp(1.25rem, 1.8vw, 2rem);
+  font-weight: 500;
   line-height: 1;
-  transition: color 0.2s ease;
-}
-
-.panel:hover .collapsedName {
-  color: #FFFFFF;
-}
-
-/* ── EXPANDED WRAPPER (PULLED BOOK) ── */
-.expandedWrapper {
-  width: 360px;
-  min-width: 360px;
-  height: 100%;
-  display: flex;
-  align-items: stretch;
-  padding: 0.75rem 0.875rem 0.75rem 0;
-  flex-shrink: 0;
-}
-
-/* ── ACTIVE LEFT SPINE STRIP ── */
-.activeLeftStrip {
-  width: 58px;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.25rem 0 1.5rem 0;
-  flex-shrink: 0;
-}
-
-.activeTopMeta {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.activeYear {
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  transform: rotate(180deg);
-  font-size: 0.8125rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: -0.03em;
   font-family: var(--font);
+  pointer-events: none;
+  z-index: 10;
   white-space: nowrap;
 }
 
-.activeVol {
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  transform: rotate(180deg);
-  font-size: 0.5625rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  color: var(--nyx-blue-light);
-  font-family: var(--font);
+.itemLabel {
+  width: auto;
+  margin: 0;
+  padding: 0;
   white-space: nowrap;
 }
 
-.activeName {
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  transform: rotate(180deg);
-  font-size: 1.0625rem;
-  font-weight: 700;
-  color: var(--white);
-  letter-spacing: 0.02em;
-  font-family: var(--font);
+.itemYear {
+  margin: 0;
+  padding: 0;
   white-space: nowrap;
+  font-weight: 500;
 }
 
-/* ── BOOK COVER CARD CONTAINER ── */
-.cardContainer {
-  flex: 1;
+/*
+  Exact Skiper35 image container:
+  h-[92%] rounded-[0.6vw] object-cover pl-2 pr-[1.3vw] pt-[1.3vw] md:h-[100%] md:pb-[1.3vw] md:pl-[4vw]
+*/
+.imageContainer {
   height: 100%;
-  min-width: 0;
-  border-radius: 18px;
-  overflow: hidden;
-  position: relative;
-  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.75);
-}
-
-.cardVisual {
   width: 100%;
-  height: 100%;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  border-radius: 18px;
+  border-radius: 0.6vw;
+  padding-top: 1.3vw;
+  padding-right: 1.3vw;
+  padding-bottom: 1.3vw;
+  padding-left: 4.5vw;
+  box-sizing: border-box;
   overflow: hidden;
 }
 
-.cardSvg {
+.panelImg {
   width: 100%;
   height: 100%;
+  object-fit: cover;
+  border-radius: 0.75rem;
   display: block;
 }
 
-/* ── CARD OVERLAY ── */
-.cardOverlay {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 1.25rem;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.05) 50%, rgba(0, 0, 0, 0.88) 100%);
-  pointer-events: auto;
-}
-
-.cardOverlayTop {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.industryBadge {
-  font-size: 0.625rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--white);
-  background: rgba(0, 0, 0, 0.55);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  padding: 0.3rem 0.65rem;
-  border-radius: 100px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-}
-
-.cardOverlayBottom {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.cardTagline {
-  font-size: 0.8125rem;
-  color: rgba(255, 255, 255, 0.88);
-  line-height: 1.35;
-  margin: 0;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.caseStudyBtn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.8125rem;
-  font-weight: 700;
-  color: #0A0A09;
-  background: #FFFFFF;
-  padding: 0.45rem 0.95rem;
-  border-radius: 100px;
-  text-decoration: none;
-  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
-  width: fit-content;
-}
-
-.caseStudyBtn:hover {
-  transform: translateY(-2px);
-  background: var(--nyx-blue);
-  color: #FFFFFF;
-}
-
-/* ── PHYSICAL BOOKSHELF PLANK (SHELF LEDGE) ── */
-.shelfPlank {
-  position: relative;
-  width: 100%;
-  height: 22px;
-  display: flex;
-  flex-direction: column;
-  z-index: 30;
-}
-
-/* Sharp highlight on the front top edge of the wooden plank */
-.shelfHighlight {
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0.08) 0%,
-    rgba(255, 255, 255, 0.28) 25%,
-    rgba(255, 255, 255, 0.38) 50%,
-    rgba(255, 255, 255, 0.28) 75%,
-    rgba(255, 255, 255, 0.08) 100%
-  );
-}
-
-/* Beveled dark wood/ebony front face of the shelf */
-.shelfFace {
-  width: 100%;
-  height: 20px;
-  background: linear-gradient(180deg, #242422 0%, #161614 45%, #0B0B0A 100%);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.8);
-}
-
-/* Deep cast shadow dropping beneath the shelf ledge */
-.shelfUnderShadow {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  height: 20px;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
-  pointer-events: none;
-}
-
-/* ── RESPONSIVE ── */
-
-@media (max-width: 768px) {
-  .shelfContainer {
+/* Mobile responsive */
+@media (max-width: 767px) {
+  .skiperSection {
     height: auto;
   }
 
-  .galleryWrapper {
-    height: auto;
-  }
-
-  .gallery {
-    flex-direction: column;
+  .skiperContainer {
     height: auto;
     overflow-x: hidden;
     overflow-y: auto;
-    padding-top: 0;
+  }
+
+  .skiperRow {
+    flex-direction: column;
+    min-width: unset;
+    height: auto;
   }
 
   .panel {
-    width: 100% !important;
-    height: 64px;
     border-right: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   }
 
-  .panelActive {
-    height: 480px !important;
-  }
-
-  .collapsedContent {
+  .labelRow {
+    position: relative;
+    bottom: auto;
+    left: auto;
     width: 100%;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 0 1.5rem;
-  }
-
-  .spineTopMeta {
-    flex-direction: row;
-    width: auto;
-    gap: 0.75rem;
-  }
-
-  .spineBands,
-  .spineBottomBands {
-    display: none;
-  }
-
-  .spineTitleWrap {
-    flex: 1;
-    justify-content: flex-start;
-    padding-bottom: 0;
-  }
-
-  .collapsedName {
-    writing-mode: horizontal-tb;
     transform: none;
+    padding: 1rem 1.5rem;
+    font-size: 1.25rem;
   }
 
-  .expandedWrapper {
-    width: 100%;
-    flex-direction: column;
+  .imageContainer {
+    height: 420px;
     padding: 1rem;
-    gap: 0.75rem;
-  }
-
-  .activeLeftStrip {
-    width: 100%;
-    height: auto;
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 0 0.5rem;
-  }
-
-  .activeTopMeta {
-    flex-direction: row;
-  }
-
-  .activeYear,
-  .activeVol,
-  .activeName {
-    writing-mode: horizontal-tb;
-    transform: none;
-  }
-
-  .cardContainer {
-    width: 100%;
-    height: 380px;
-  }
-
-  .shelfPlank {
-    display: none;
   }
 }

@@ -1,236 +1,127 @@
 'use client';
 
-import { useState, useRef } from 'react';
-import { motion } from 'framer-motion';
-import Link from 'next/link';
-import { Project } from '@/data/projects';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import styles from './HoverExpandGallery.module.css';
 
+interface GalleryItem {
+  id: number;
+  label: string;
+  year: string;
+  image: string;
+}
+
+const defaultItems: GalleryItem[] = [
+  { id: 1, label: "Velvet ® Dreams Studio", year: "2024", image: "/images/skiper35/imgp3.png" },
+  { id: 2, label: "Neon Pulse ® Agency", year: "2024", image: "/images/skiper35/illstration15.png" },
+  { id: 3, label: "Midnight Canvas", year: "2024", image: "/images/skiper35/img32.png" },
+  { id: 4, label: "Echo Digital Lab", year: "2024", image: "/images/skiper35/img27.png" },
+  { id: 5, label: "Skiper Creative ® Co ", year: "2023", image: "/images/skiper35/img5.webp" },
+  { id: 6, label: "Cosmic Brew Studios", year: "2023—2024", image: "/images/skiper35/illstration12.png" },
+  { id: 7, label: "Horizon Typography", year: "2024", image: "/images/skiper35/illstration13.png" },
+  { id: 8, label: "Waves & ® Motion", year: "2022—2024", image: "/images/skiper35/img8.webp" },
+  { id: 9, label: "Stellar Workshop", year: "2023", image: "/images/skiper35/illstration9.png" },
+  { id: 10, label: "Prism ® Media House", year: "2023", image: "/images/skiper35/img17.png" },
+  { id: 11, label: "Aurora Design Co ™ ", year: "2023", image: "/images/skiper35/illstration5.png" },
+  { id: 12, label: "Flux Interactive", year: "2023", image: "/images/skiper35/img12.png" },
+  { id: 13, label: "Ember Creative Lab ™", year: "2022", image: "/images/skiper35/illstration3.png" },
+  { id: 14, label: "Zenith Brand Studio", year: "2024", image: "/images/skiper35/img15.png" },
+  { id: 15, label: "Quantum Visual Arts", year: "2022—2023", image: "/images/skiper35/img21.png" },
+  { id: 16, label: "Quantum Visual Arts", year: "2022—2023", image: "/images/skiper35/img8.png" },
+  { id: 17, label: "Quantum Visual Arts", year: "2022—2023", image: "/images/skiper35/img1.png" }
+];
+
 interface HoverExpandGalleryProps {
-  projects: Project[];
+  projects?: unknown;
 }
 
-// Generative artistic card visual matching the skiper35 editorial aesthetic
-function ProjectCardVisual({ project }: { project: Project }) {
-  const { mockPalette } = project;
+export default function HoverExpandGallery({ projects }: HoverExpandGalleryProps = {}) {
+  const [activeIdx, setActiveIdx] = useState<number>(5); // Cosmic Brew Studios default
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+
+  useEffect(() => {
+    const media = window.matchMedia('(max-width: 767px)');
+    setIsMobile(media.matches);
+    const handler = () => setIsMobile(media.matches);
+    media.addEventListener('change', handler);
+    return () => media.removeEventListener('change', handler);
+  }, []);
 
   return (
-    <div className={styles.cardVisual} style={{ background: mockPalette.surface }}>
-      {/* Background artwork */}
-      <svg className={styles.cardSvg} viewBox="0 0 280 500" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id={`grad-${project.slug}`} x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor={mockPalette.primary} stopOpacity="0.9" />
-            <stop offset="100%" stopColor={mockPalette.secondary} stopOpacity="0.85" />
-          </linearGradient>
-          <pattern id={`grid-${project.slug}`} width="20" height="20" patternUnits="userSpaceOnUse">
-            <line x1="0" y1="0" x2="20" y2="0" stroke={mockPalette.text} strokeOpacity="0.06" strokeWidth="1" />
-            <line x1="0" y1="0" x2="0" y2="20" stroke={mockPalette.text} strokeOpacity="0.06" strokeWidth="1" />
-          </pattern>
-        </defs>
-
-        {/* Ambient Grid */}
-        <rect width="280" height="500" fill={`url(#grid-${project.slug})`} />
-
-        {/* Tailored SVG Art Composition per project style */}
-        {project.industry.includes('Architecture') || project.industry.includes('Design') ? (
-          <g opacity="0.9">
-            <rect x="35" y="70" width="150" height="320" stroke={mockPalette.primary} strokeWidth="1.5" />
-            <rect x="75" y="120" width="150" height="280" stroke={mockPalette.secondary} strokeWidth="1.5" strokeDasharray="4 4" />
-            <line x1="35" y1="230" x2="225" y2="230" stroke={mockPalette.primary} strokeWidth="1.5" />
-            <circle cx="150" cy="180" r="42" fill={mockPalette.secondary} fillOpacity="0.25" />
-          </g>
-        ) : project.industry.includes('Wellness') || project.industry.includes('Luxury') || project.industry.includes('Food') ? (
-          <g opacity="0.85">
-            {/* Elegant botanical / floral curve silhouettes inspired by skiper35 */}
-            <path d="M140 450 C 135 300, 80 220, 70 120 C 60 70, 100 40, 140 100 C 180 40, 220 70, 210 120 C 200 220, 145 300, 140 450 Z" fill={`url(#grad-${project.slug})`} />
-            <path d="M140 450 C 120 330, 40 280, 50 190 C 60 140, 110 150, 140 210" stroke={mockPalette.primary} strokeWidth="2" fill="none" />
-            <path d="M140 450 C 160 330, 240 280, 230 190 C 220 140, 170 150, 140 210" stroke={mockPalette.secondary} strokeWidth="2" fill="none" />
-            <circle cx="140" cy="90" r="14" fill={mockPalette.secondary} />
-          </g>
-        ) : project.industry.includes('Aerospace') || project.industry.includes('Automotive') ? (
-          <g opacity="0.9">
-            <ellipse cx="140" cy="220" rx="105" ry="38" stroke={mockPalette.primary} strokeWidth="1.5" transform="rotate(-25 140 220)" />
-            <ellipse cx="140" cy="220" rx="105" ry="38" stroke={mockPalette.secondary} strokeWidth="1.5" transform="rotate(25 140 220)" />
-            <circle cx="140" cy="220" r="32" fill={`url(#grad-${project.slug})`} />
-            <line x1="20" y1="360" x2="260" y2="360" stroke={mockPalette.primary} strokeWidth="1" strokeDasharray="3 3" />
-          </g>
-        ) : (
-          <g opacity="0.85">
-            <circle cx="140" cy="200" r="70" stroke={mockPalette.primary} strokeWidth="1.5" />
-            <circle cx="140" cy="200" r="42" stroke={mockPalette.secondary} strokeWidth="1.5" strokeDasharray="4 4" />
-            <rect x="75" y="135" width="130" height="130" stroke={mockPalette.primary} strokeWidth="1" transform="rotate(45 140 200)" />
-            <circle cx="140" cy="200" r="16" fill={`url(#grad-${project.slug})`} />
-          </g>
-        )}
-
-        {/* Minimal metadata watermark on card */}
-        <text x="24" y="435" fill={mockPalette.text} fillOpacity="0.45" fontSize="10" fontFamily="var(--font)" fontWeight="600" letterSpacing="0.1em">
-          {project.industry.toUpperCase()}
-        </text>
-        <text x="24" y="462" fill={mockPalette.text} fillOpacity="0.95" fontSize="17" fontFamily="var(--font)" fontWeight="800" letterSpacing="-0.02em">
-          {project.name}
-        </text>
-      </svg>
-
-      {/* Floating CTA Overlay */}
-      <div className={styles.cardOverlay}>
-        <div className={styles.cardOverlayTop}>
-          <span className={styles.industryBadge}>{project.industry}</span>
-        </div>
-        <div className={styles.cardOverlayBottom}>
-          <p className={styles.cardTagline}>{project.tagline}</p>
-          <Link
-            href={`/work/${project.slug}`}
-            className={styles.caseStudyBtn}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <span>View Case Study</span>
-            <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
-              <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </Link>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-export default function HoverExpandGallery({ projects }: HoverExpandGalleryProps) {
-  const [activeSlug, setActiveSlug] = useState<string>(projects[0]?.slug ?? '');
-  const galleryRef = useRef<HTMLDivElement>(null);
-  const panelRefs = useRef<Record<string, HTMLElement | null>>({});
-
-  const currentIndex = projects.findIndex((p) => p.slug === activeSlug);
-
-  const selectProject = (slug: string) => {
-    setActiveSlug(slug);
-    const el = panelRefs.current[slug];
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
-    }
-  };
-
-  const handlePrev = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    const prevIdx = (currentIndex - 1 + projects.length) % projects.length;
-    selectProject(projects[prevIdx].slug);
-  };
-
-  const handleNext = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    const nextIdx = (currentIndex + 1) % projects.length;
-    selectProject(projects[nextIdx].slug);
-  };
-
-  return (
-    <div className={styles.shelfContainer}>
-      {/* Top shelf ambient shadow */}
-      <div className={styles.shelfTopShadow} aria-hidden="true" />
-
-      <div className={styles.galleryWrapper}>
-        {/* Floating HUD navigation pill */}
-        <div className={styles.galleryNav}>
-          <button
-            onClick={handlePrev}
-            aria-label="Previous book"
-            className={styles.navBtn}
-          >
-            ‹
-          </button>
-          <span className={styles.navCount}>
-            {String(Math.max(1, currentIndex + 1)).padStart(2, '0')} / {String(projects.length).padStart(2, '0')}
-          </span>
-          <button
-            onClick={handleNext}
-            aria-label="Next book"
-            className={styles.navBtn}
-          >
-            ›
-          </button>
-        </div>
-
-        <div
-          ref={galleryRef}
-          className={styles.gallery}
-          role="list"
-          aria-label="Project bookshelf"
-        >
-          {projects.map((project, index) => {
-            const isActive = activeSlug === project.slug;
+    <section className={styles.skiperSection}>
+      <div className={styles.skiperContainer}>
+        <motion.div className={styles.skiperRow}>
+          {defaultItems.map((item, index) => {
+            const isActive = activeIdx === index;
 
             return (
-              <motion.article
-                key={project.slug}
-                ref={(el) => {
-                  panelRefs.current[project.slug] = el;
-                }}
-                className={`${styles.panel} ${styles.bookSpine} ${isActive ? styles.panelActive : ''}`}
-                animate={{
-                  flexGrow: isActive ? 0 : 1,
-                  flexShrink: 0,
-                  flexBasis: isActive ? 360 : 54,
-                  y: isActive ? -10 : 0,
-                }}
-                transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                onMouseEnter={() => selectProject(project.slug)}
-                onClick={() => selectProject(project.slug)}
-                role="listitem"
-                aria-label={project.name}
+              <motion.div
+                key={item.id}
+                className={styles.panel}
+                onClick={isMobile ? () => setActiveIdx(index) : undefined}
+                onMouseEnter={isMobile ? undefined : () => setActiveIdx(index)}
+                initial={
+                  isMobile
+                    ? { height: '4rem', width: '100%' }
+                    : { width: '4rem', height: '100%' }
+                }
+                animate={
+                  isMobile
+                    ? { height: isActive ? '500px' : '4rem', width: '100%' }
+                    : { width: isActive ? '28rem' : '4rem' }
+                }
+                transition={{ stiffness: 200, damping: 25, type: 'spring' }}
               >
-                {/* Book spine fabric bookmark ribbon */}
-                <div
-                  className={styles.spineRibbon}
-                  style={{ background: project.mockPalette.primary }}
-                  aria-hidden="true"
-                />
+                {/* Vertical Label & Year (Exact Skiper35 implementation) */}
+                <motion.div
+                  className={styles.labelRow}
+                  animate={{
+                    color: isActive ? '#F1F1F1' : 'rgba(241, 241, 241, 0.3)',
+                  }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <p className={styles.itemLabel}>{item.label}</p>
+                  <AnimatePresence>
+                    {isActive && (
+                      <motion.p
+                        className={styles.itemYear}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -20 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        {item.year}
+                      </motion.p>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
 
-                {/* ── COLLAPSED STATE: Book Spine sitting on shelf ── */}
-                {!isActive && (
-                  <div className={styles.collapsedContent}>
-                    <div className={styles.spineTopMeta}>
-                      <span className={styles.spineIndex}>
-                        {String(index + 1).padStart(2, '0')}
-                      </span>
-                      <div className={styles.spineBands} />
-                    </div>
-                    <div className={styles.spineTitleWrap}>
-                      <span className={styles.collapsedName}>{project.name}</span>
-                    </div>
-                    <div className={styles.spineBottomBands} />
-                  </div>
-                )}
-
-                {/* ── EXPANDED STATE: Book pulled out from shelf ── */}
-                {isActive && (
-                  <div className={styles.expandedWrapper}>
-                    {/* Left vertical spine strip: Year at top, Project Name at bottom */}
-                    <div className={styles.activeLeftStrip}>
-                      <div className={styles.activeTopMeta}>
-                        <span className={styles.activeYear}>{project.year}</span>
-                        <span className={styles.activeVol}>№ {String(index + 1).padStart(2, '0')}</span>
-                      </div>
-                      <span className={styles.activeName}>{project.name}</span>
-                    </div>
-
-                    {/* Right book cover card with artwork */}
-                    <div className={styles.cardContainer}>
-                      <ProjectCardVisual project={project} />
-                    </div>
-                  </div>
-                )}
-              </motion.article>
+                {/* Expanded Image Container */}
+                <motion.div
+                  initial={{ opacity: 1 }}
+                  animate={{ opacity: Number(isActive) }}
+                  className={styles.imageContainer}
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <motion.img
+                    src={item.image}
+                    alt={item.label}
+                    className={styles.panelImg}
+                    transition={{ duration: 0.4, ease: 'easeOut' }}
+                    onError={(e) => {
+                      // Fallback if image still loading
+                      const target = e.currentTarget as HTMLImageElement;
+                      if (!target.src.includes('illstration12.png')) {
+                        target.src = '/images/skiper35/illstration12.png';
+                      }
+                    }}
+                  />
+                </motion.div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </div>
-
-      {/* Physical Bookshelf Plank / Ledge */}
-      <div className={styles.shelfPlank} aria-hidden="true">
-        <div className={styles.shelfHighlight} />
-        <div className={styles.shelfFace} />
-        <div className={styles.shelfUnderShadow} />
-      </div>
-    </div>
+    </section>
   );
 }
