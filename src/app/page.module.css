@@ -377,19 +377,12 @@
   font-size: 0.875rem;
 }
 
-/* ─── SELECTED WORK (FULL VIEWPORT) ─── */
+/* ─── SELECTED WORK TOPIC (Outside the shelf) ─── */
 
-.workSection {
-  width: 100%;
-  height: 100vh;
-  min-height: 700px;
-  background: #0A0A09;
-  display: flex;
-  flex-direction: column;
-  padding-top: 2rem;
-  box-sizing: border-box;
-  overflow: hidden;
-  position: relative;
+.workHeaderSection {
+  padding: 5rem 0 2.25rem;
+  background: var(--off-white);
+  border-top: 1px solid var(--light-gray);
 }
 
 .workHeader {
@@ -397,8 +390,30 @@
   justify-content: space-between;
   align-items: flex-end;
   gap: 2rem;
-  margin-bottom: 1.25rem;
-  flex-shrink: 0;
+}
+
+.workHeaderMeta {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.workHeaderSub {
+  font-size: 0.875rem;
+  color: var(--muted);
+  max-width: 320px;
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* ─── BOOKSHELF SECTION ─── */
+
+.shelfSection {
+  width: 100%;
+  background: #080807;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 20px 30px rgba(0, 0, 0, 0.6);
 }
 
 .workGrid {

@@ -48,8 +48,8 @@ export default function WorkPage() {
         </div>
       </section>
 
-      {/* ─── PROJECT GALLERY (Skiper35 hover-expand) ─── */}
-      <section className={`${styles.workSection}`}>
+      {/* ─── PROJECT BOOKSHELF GALLERY ─── */}
+      <section className={`${styles.shelfSection}`}>
         <HoverExpandGallery projects={projects} />
       </section>
 

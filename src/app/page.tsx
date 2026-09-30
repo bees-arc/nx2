@@ -184,22 +184,28 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── SELECTED WORK ─── */}
-      <section className={styles.workSection}>
-        {/* Header stays in container */}
+      {/* ─── SELECTED WORK TOPIC (Outside the shelf section) ─── */}
+      <section className={styles.workHeaderSection}>
         <div className="container">
           <div className={styles.workHeader}>
             <div>
-              <span className="section-label section-label--dark">Selected Work</span>
-              <h2 className="t-h2" style={{ color: 'var(--white)' }}>Built with purpose.</h2>
+              <span className="section-label">Selected Work</span>
+              <h2 className="t-h2">Built with purpose.</h2>
             </div>
-            <Link href="/work" className="btn btn--outline-white">
-              View All Work →
-            </Link>
+            <div className={styles.workHeaderMeta}>
+              <p className={styles.workHeaderSub}>
+                Explore our project library. Hover any spine to pull out the case study.
+              </p>
+              <Link href="/work" className="btn btn--outline">
+                View All Work →
+              </Link>
+            </div>
           </div>
         </div>
+      </section>
 
-        {/* Gallery bleeds full width */}
+      {/* ─── BOOKSHELF GALLERY SECTION ─── */}
+      <section className={styles.shelfSection}>
         <HoverExpandGallery projects={featured} />
       </section>
 

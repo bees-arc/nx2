@@ -74,18 +74,16 @@
   border-color: var(--ink);
 }
 
-/* ─── WORK SECTION (FULL VIEWPORT) ─── */
+/* ─── BOOKSHELF SECTION ─── */
 
-.workSection {
+.shelfSection {
   width: 100%;
-  height: 100vh;
-  min-height: 700px;
-  background: #0A0A09;
+  background: #080807;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  padding: 0;
-  box-sizing: border-box;
+  position: relative;
+  box-shadow: inset 0 20px 30px rgba(0, 0, 0, 0.6);
 }
 
 .projectGrid {

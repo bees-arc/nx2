@@ -124,80 +124,112 @@ export default function HoverExpandGallery({ projects }: HoverExpandGalleryProps
   };
 
   return (
-    <div className={styles.galleryWrapper}>
-      {/* Floating HUD navigation pill */}
-      <div className={styles.galleryNav}>
-        <button
-          onClick={handlePrev}
-          aria-label="Previous project"
-          className={styles.navBtn}
+    <div className={styles.shelfContainer}>
+      {/* Top shelf ambient shadow */}
+      <div className={styles.shelfTopShadow} aria-hidden="true" />
+
+      <div className={styles.galleryWrapper}>
+        {/* Floating HUD navigation pill */}
+        <div className={styles.galleryNav}>
+          <button
+            onClick={handlePrev}
+            aria-label="Previous book"
+            className={styles.navBtn}
+          >
+            ‹
+          </button>
+          <span className={styles.navCount}>
+            {String(Math.max(1, currentIndex + 1)).padStart(2, '0')} / {String(projects.length).padStart(2, '0')}
+          </span>
+          <button
+            onClick={handleNext}
+            aria-label="Next book"
+            className={styles.navBtn}
+          >
+            ›
+          </button>
+        </div>
+
+        <div
+          ref={galleryRef}
+          className={styles.gallery}
+          role="list"
+          aria-label="Project bookshelf"
         >
-          ‹
-        </button>
-        <span className={styles.navCount}>
-          {String(Math.max(1, currentIndex + 1)).padStart(2, '0')} / {String(projects.length).padStart(2, '0')}
-        </span>
-        <button
-          onClick={handleNext}
-          aria-label="Next project"
-          className={styles.navBtn}
-        >
-          ›
-        </button>
+          {projects.map((project, index) => {
+            const isActive = activeSlug === project.slug;
+
+            return (
+              <motion.article
+                key={project.slug}
+                ref={(el) => {
+                  panelRefs.current[project.slug] = el;
+                }}
+                className={`${styles.panel} ${styles.bookSpine} ${isActive ? styles.panelActive : ''}`}
+                animate={{
+                  flexGrow: isActive ? 0 : 1,
+                  flexShrink: 0,
+                  flexBasis: isActive ? 360 : 54,
+                  y: isActive ? -10 : 0,
+                }}
+                transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                onMouseEnter={() => selectProject(project.slug)}
+                onClick={() => selectProject(project.slug)}
+                role="listitem"
+                aria-label={project.name}
+              >
+                {/* Book spine fabric bookmark ribbon */}
+                <div
+                  className={styles.spineRibbon}
+                  style={{ background: project.mockPalette.primary }}
+                  aria-hidden="true"
+                />
+
+                {/* ── COLLAPSED STATE: Book Spine sitting on shelf ── */}
+                {!isActive && (
+                  <div className={styles.collapsedContent}>
+                    <div className={styles.spineTopMeta}>
+                      <span className={styles.spineIndex}>
+                        {String(index + 1).padStart(2, '0')}
+                      </span>
+                      <div className={styles.spineBands} />
+                    </div>
+                    <div className={styles.spineTitleWrap}>
+                      <span className={styles.collapsedName}>{project.name}</span>
+                    </div>
+                    <div className={styles.spineBottomBands} />
+                  </div>
+                )}
+
+                {/* ── EXPANDED STATE: Book pulled out from shelf ── */}
+                {isActive && (
+                  <div className={styles.expandedWrapper}>
+                    {/* Left vertical spine strip: Year at top, Project Name at bottom */}
+                    <div className={styles.activeLeftStrip}>
+                      <div className={styles.activeTopMeta}>
+                        <span className={styles.activeYear}>{project.year}</span>
+                        <span className={styles.activeVol}>№ {String(index + 1).padStart(2, '0')}</span>
+                      </div>
+                      <span className={styles.activeName}>{project.name}</span>
+                    </div>
+
+                    {/* Right book cover card with artwork */}
+                    <div className={styles.cardContainer}>
+                      <ProjectCardVisual project={project} />
+                    </div>
+                  </div>
+                )}
+              </motion.article>
+            );
+          })}
+        </div>
       </div>
 
-      <div
-        ref={galleryRef}
-        className={styles.gallery}
-        role="list"
-        aria-label="Project gallery"
-      >
-        {projects.map((project) => {
-          const isActive = activeSlug === project.slug;
-
-          return (
-            <motion.article
-              key={project.slug}
-              ref={(el) => {
-                panelRefs.current[project.slug] = el;
-              }}
-              className={`${styles.panel} ${isActive ? styles.panelActive : ''}`}
-              animate={{
-                flexGrow: isActive ? 0 : 1,
-                flexShrink: 0,
-                flexBasis: isActive ? 360 : 54,
-              }}
-              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-              onMouseEnter={() => selectProject(project.slug)}
-              onClick={() => selectProject(project.slug)}
-              role="listitem"
-              aria-label={project.name}
-            >
-              {/* ── COLLAPSED STATE: vertical label at bottom (exact skiper35 style) ── */}
-              {!isActive && (
-                <div className={styles.collapsedContent}>
-                  <span className={styles.collapsedName}>{project.name}</span>
-                </div>
-              )}
-
-              {/* ── EXPANDED STATE: left vertical strip + rounded card (exact skiper35 style) ── */}
-              {isActive && (
-                <div className={styles.expandedWrapper}>
-                  {/* Left vertical text strip: Year at top, Project Name at bottom */}
-                  <div className={styles.activeLeftStrip}>
-                    <span className={styles.activeYear}>{project.year}</span>
-                    <span className={styles.activeName}>{project.name}</span>
-                  </div>
-
-                  {/* Right rounded card with visual */}
-                  <div className={styles.cardContainer}>
-                    <ProjectCardVisual project={project} />
-                  </div>
-                </div>
-              )}
-            </motion.article>
-          );
-        })}
+      {/* Physical Bookshelf Plank / Ledge */}
+      <div className={styles.shelfPlank} aria-hidden="true">
+        <div className={styles.shelfHighlight} />
+        <div className={styles.shelfFace} />
+        <div className={styles.shelfUnderShadow} />
       </div>
     </div>
   );
