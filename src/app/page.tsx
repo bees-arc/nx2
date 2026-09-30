@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { getFeaturedProjects } from '@/data/projects';
 import HoverExpandGallery from '@/components/ui/HoverExpandGallery';
 import HoverMemberServices from '@/components/ui/HoverMemberServices';
+import LiquidHero from '@/components/ui/LiquidHero';
 import styles from './page.module.css';
 
 export default function Home() {
@@ -9,109 +10,8 @@ export default function Home() {
 
   return (
     <>
-      {/* ─── HERO ─── */}
-      <section className={styles.hero}>
-        <div className={styles.heroBg} aria-hidden="true">
-          <div className={styles.heroOrb1} />
-          <div className={styles.heroOrb2} />
-          <div className={styles.heroGrid} />
-        </div>
-        <div className={`container ${styles.heroInner}`}>
-          <div className={styles.heroLabel}>
-            <span className={`section-label animate-fade-up`}>
-              Website Design &amp; UI/UX Studio
-            </span>
-          </div>
-          <h1 className={`t-display ${styles.heroTitle} animate-fade-up animate-fade-up-delay-1`}>
-            We build digital<br />
-            <em className={styles.heroItalic}>experiences</em> that turn<br />
-            attention into action.
-          </h1>
-          <p className={`t-body-lg ${styles.heroSub} animate-fade-up animate-fade-up-delay-2`}>
-            NYX crafts websites and UI/UX that make businesses look credible,
-            communicate clearly, and convert visitors into clients.
-          </p>
-          <div className={`${styles.heroCtas} animate-fade-up animate-fade-up-delay-3`}>
-            <Link href="/contact" className="btn btn--primary btn--lg">
-              Start a Project
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                <path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </Link>
-            <Link href="/work" className="btn btn--outline btn--lg">
-              View Our Work
-            </Link>
-          </div>
-          <div className={`${styles.heroStats} animate-fade-up animate-fade-up-delay-4`}>
-            <div className={styles.stat}>
-              <span className={styles.statNum}>4+</span>
-              <span className={styles.statLabel}>Industries served</span>
-            </div>
-            <div className={styles.statDivider} />
-            <div className={styles.stat}>
-              <span className={styles.statNum}>100%</span>
-              <span className={styles.statLabel}>Custom builds</span>
-            </div>
-            <div className={styles.statDivider} />
-            <div className={styles.stat}>
-              <span className={styles.statNum}>0</span>
-              <span className={styles.statLabel}>Generic templates</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Hero Visual */}
-        <div className={`${styles.heroVisual} animate-fade-up animate-fade-up-delay-3`}>
-          <div className={styles.browserFrame}>
-            <div className={styles.browserBar}>
-              <div className={styles.browserDots}>
-                <span /><span /><span />
-              </div>
-              <div className={styles.browserUrl}>nyxstudio.co</div>
-            </div>
-            <div className={styles.browserContent}>
-              <div className={styles.mockHero}>
-                <div className={styles.mockHeroText}>
-                  <div className={styles.mockLine} style={{ width: '70%', height: '32px' }} />
-                  <div className={styles.mockLine} style={{ width: '55%', height: '32px' }} />
-                  <div className={styles.mockLine} style={{ width: '80%', height: '16px', marginTop: '1rem' }} />
-                  <div className={styles.mockLine} style={{ width: '65%', height: '16px' }} />
-                  <div className={styles.mockButtons}>
-                    <div className={styles.mockBtn} />
-                    <div className={styles.mockBtnOutline} />
-                  </div>
-                </div>
-                <div className={styles.mockHeroImg} />
-              </div>
-              <div className={styles.mockCards}>
-                <div className={styles.mockCard}>
-                  <div className={styles.mockCardIcon} />
-                  <div className={styles.mockLine} style={{ width: '60%', height: '12px' }} />
-                  <div className={styles.mockLine} style={{ width: '80%', height: '10px' }} />
-                </div>
-                <div className={styles.mockCard}>
-                  <div className={styles.mockCardIcon} />
-                  <div className={styles.mockLine} style={{ width: '55%', height: '12px' }} />
-                  <div className={styles.mockLine} style={{ width: '70%', height: '10px' }} />
-                </div>
-                <div className={styles.mockCard}>
-                  <div className={styles.mockCardIcon} />
-                  <div className={styles.mockLine} style={{ width: '65%', height: '12px' }} />
-                  <div className={styles.mockLine} style={{ width: '75%', height: '10px' }} />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className={styles.floatingBadge} style={{ top: '12%', right: '-5%' }}>
-            <div className={styles.badgeDot} />
-            <span>Conversion-focused</span>
-          </div>
-          <div className={styles.floatingBadge} style={{ bottom: '18%', left: '-6%' }}>
-            <div className={styles.badgeDot} style={{ background: '#10B981' }} />
-            <span>Performance-first</span>
-          </div>
-        </div>
-      </section>
+      {/* ─── LIQUID SIMULATION HERO (Skiper12 with NYX Branding) ─── */}
+      <LiquidHero />
 
       {/* ─── MARQUEE ─── */}
       <div className={styles.marqueeWrap} aria-hidden="true">
