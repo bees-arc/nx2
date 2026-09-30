@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { getFeaturedProjects } from '@/data/projects';
 import HoverExpandGallery from '@/components/ui/HoverExpandGallery';
+import HoverMemberServices from '@/components/ui/HoverMemberServices';
 import styles from './page.module.css';
 
 export default function Home() {
@@ -128,61 +129,13 @@ export default function Home() {
         </div>
       </div>
 
-      {/* ─── WHAT NYX DOES ─── */}
-      <section className="section section--off">
-        <div className="container">
-          <div className={styles.servicesHeader}>
-            <div>
-              <span className="section-label">What we do</span>
-              <h2 className="t-h2">Three things.<br />Done exceptionally.</h2>
-            </div>
-            <p className={`t-body-lg ${styles.servicesSubtitle}`}>
-              We don't spread thin across every digital service. We focus on what
-              we're best at — and deliver at a level that generic agencies can't match.
-            </p>
-          </div>
-
-          <div className={styles.serviceCards}>
-            {[
-              {
-                num: '01',
-                title: 'Website Design',
-                desc: 'Marketing sites, business websites, landing pages, and corporate platforms — designed to communicate your value and convert visitors.',
-                href: '/services#design',
-                tags: ['Marketing Sites', 'Landing Pages', 'Redesigns', 'Corporate'],
-              },
-              {
-                num: '02',
-                title: 'Website Development',
-                desc: 'Next.js builds that are fast, responsive, and SEO-ready from day one. Every line of code serves a purpose.',
-                href: '/services#development',
-                tags: ['Next.js', 'CMS Integration', 'Performance', 'Analytics'],
-              },
-              {
-                num: '03',
-                title: 'UI/UX Design',
-                desc: 'Research-backed interfaces — from wireframes to high-fidelity design systems. Experiences that users actually enjoy.',
-                href: '/services#uiux',
-                tags: ['UX Research', 'Wireframes', 'Design Systems', 'Prototypes'],
-              },
-            ].map((s) => (
-              <div key={s.num} className={`${styles.serviceCard} reveal`}>
-                <div className={styles.serviceCardNum}>{s.num}</div>
-                <h3 className={`t-h4 ${styles.serviceCardTitle}`}>{s.title}</h3>
-                <p className={`t-body ${styles.serviceCardDesc}`}>{s.desc}</p>
-                <div className={styles.serviceCardTags}>
-                  {s.tags.map((t) => (
-                    <span key={t} className={styles.tag}>{t}</span>
-                  ))}
-                </div>
-                <Link href={s.href} className={`btn btn--ghost ${styles.serviceCardLink}`}>
-                  Learn more →
-                </Link>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* ─── WHAT NYX DOES: SKIPER6 HOVER MEMBERS INTERACTION ─── */}
+      <HoverMemberServices
+        defaultName="SERVICES"
+        backgroundColor="#121212"
+        hoverTextColor="#EF4444"
+        cursorColor="#EF4444"
+      />
 
       {/* ─── SELECTED WORK TOPIC (Outside the shelf section) ─── */}
       <section className={styles.workHeaderSection}>
