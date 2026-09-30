@@ -191,7 +191,7 @@ interface HoverMemberServicesProps {
 
 export default function HoverMemberServices({
   services = defaultServices,
-  defaultName = 'SERVICES',
+  defaultName = 'OUR SERVICES',
   backgroundColor = '#0E0E0C',
   hoverTextColor = '#3B82F6', // NYX Blue
   cursorColor = '#2563EB',    // NYX Brand Blue
@@ -274,17 +274,6 @@ export default function HoverMemberServices({
     <section className={styles.skiper6Section} style={{ backgroundColor }}>
       {/* Background ambient lighting */}
       <div className={styles.bgGlowOrb} aria-hidden="true" />
-
-      {/* ─── SECTION TOP BADGE ─── */}
-      <div className={styles.sectionTop}>
-        <div className={styles.sectionBadge}>
-          <span className={styles.badgePulse} />
-          <span>WHAT WE DO</span>
-        </div>
-        <p className={styles.sectionSubtitle}>
-          Hover to preview • Click to select a service
-        </p>
-      </div>
 
       {/* ─── INTERACTIVE AVATAR ROW & MAGNETIC FOLLOWER ─── */}
       <div
@@ -456,7 +445,7 @@ export default function HoverMemberServices({
                   className={`${styles.mainTitle} ${styles.hoverTitle}`}
                   style={{
                     color: item.accentColor,
-                    textShadow: `0 0 50px ${item.accentColor}40`,
+                    textShadow: `0 0 24px ${item.accentColor}25`,
                   }}
                 >
                   {Array.from(item.name).map((char, i) => (
