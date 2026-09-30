@@ -62,13 +62,13 @@ export default function HoverExpandGallery({ projects }: HoverExpandGalleryProps
                 onMouseEnter={isMobile ? undefined : () => setActiveIdx(index)}
                 initial={
                   isMobile
-                    ? { height: '4rem', width: '100%' }
-                    : { width: '4rem', height: '100%' }
+                    ? { height: '4.5rem', width: '100%' }
+                    : { width: '4.5rem', height: '100%' }
                 }
                 animate={
                   isMobile
-                    ? { height: isActive ? '500px' : '4rem', width: '100%' }
-                    : { width: isActive ? '28rem' : '4rem' }
+                    ? { height: isActive ? '500px' : '4.5rem', width: '100%' }
+                    : { width: isActive ? '32rem' : '4.5rem' }
                 }
                 transition={{ stiffness: 200, damping: 25, type: 'spring' }}
               >

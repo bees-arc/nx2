@@ -410,10 +410,9 @@
 
 .shelfSection {
   width: 100%;
-  background: #080807;
+  background: #121212;
   position: relative;
   overflow: hidden;
-  box-shadow: inset 0 20px 30px rgba(0, 0, 0, 0.6);
 }
 
 .workGrid {

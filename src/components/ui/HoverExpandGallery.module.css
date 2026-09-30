@@ -33,10 +33,10 @@
 .skiperRow {
   margin: 0 auto;
   display: flex;
-  width: 100%;
+  width: fit-content;
+  min-width: min-content;
   height: 100%;
   flex-direction: row;
-  min-width: 1600px;
 }
 
 .panel {
@@ -49,8 +49,12 @@
   user-select: none;
 }
 
+.panel:first-child {
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+}
+
 .panel:last-child {
-  border-right: none;
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 /* 
@@ -60,7 +64,7 @@
 .labelRow {
   position: absolute;
   bottom: 0;
-  left: 20px;
+  left: 24px;
   display: flex;
   width: calc(600px - 2.6vw);
   transform-origin: 0 50%;
