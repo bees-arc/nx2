@@ -159,9 +159,27 @@ const defaultServices: ServiceItem[] = [
   },
 ];
 
-// Spring physics matching authentic Skiper6
+// Authentic Skiper6 Spring physics
 const springConfig = { mass: 0.1, damping: 16, stiffness: 71 };
 const scaleSpringConfig = { mass: 0.1, damping: 10, stiffness: 150 };
+
+// Center-outward stagger wave function (exact formula from Skiper6)
+const getDelay = (index: number, total: number) => {
+  return 0.055 * Math.abs(index - Math.floor(total / 2));
+};
+
+// Skiper6 Character Animation Variants
+const letterVariantsIn = {
+  hidden: { y: '100%' },
+  visible: { y: '0%' },
+  exit: { y: '-100%' },
+};
+
+const letterVariantsDefault = {
+  hidden: { y: '-100%' },
+  visible: { y: '0%' },
+  exit: { y: '-100%' },
+};
 
 interface HoverMemberServicesProps {
   services?: ServiceItem[];
@@ -179,138 +197,182 @@ export default function HoverMemberServices({
   cursorColor = '#2563EB',    // NYX Brand Blue
 }: HoverMemberServicesProps) {
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
+  const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
   const [mounted, setMounted] = useState<boolean>(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const leaveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Magnetic cursor springs
+  // Magnetic cursor springs matching Skiper6
   const mouseX = useSpring(0, springConfig);
   const mouseY = useSpring(0, springConfig);
   const cursorScale = useSpring(0, scaleSpringConfig);
 
   useEffect(() => {
     setMounted(true);
+    return () => {
+      if (leaveTimeoutRef.current) clearTimeout(leaveTimeoutRef.current);
+    };
   }, []);
-
-  const getDelay = (index: number, total: number) => {
-    return 0.045 * Math.abs(index - Math.floor(total / 2));
-  };
-
-  const letterVariantsIn = {
-    hidden: { y: '100%' },
-    visible: { y: '0%' },
-    exit: { y: '-100%' },
-  };
-
-  const letterVariantsDefault = {
-    hidden: { y: '-100%' },
-    visible: { y: '0%' },
-    exit: { y: '0%' },
-  };
 
   if (!mounted) {
     return <section className={styles.sectionPlaceholder} style={{ backgroundColor }} />;
   }
 
-  const activeService = hoveredIdx !== null ? services[hoveredIdx] : null;
+  // Active index: preview on hover, or stay pinned on clicked selection
+  const activeIdx = hoveredIdx !== null ? hoveredIdx : selectedIdx;
+  const activeService = activeIdx !== null ? services[activeIdx] : null;
+
+  const handlePointerEnter = () => {
+    if (leaveTimeoutRef.current) {
+      clearTimeout(leaveTimeoutRef.current);
+      leaveTimeoutRef.current = null;
+    }
+    cursorScale.set(1);
+  };
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (containerRef.current) {
+      const rect = containerRef.current.getBoundingClientRect();
+      mouseX.set(e.clientX - rect.left);
+      mouseY.set(e.clientY - rect.top);
+    }
+  };
+
+  const handleContainerLeave = () => {
+    cursorScale.set(0);
+    if (leaveTimeoutRef.current) {
+      clearTimeout(leaveTimeoutRef.current);
+    }
+    leaveTimeoutRef.current = setTimeout(() => {
+      setHoveredIdx(null);
+    }, 120);
+  };
+
+  const handleCardHoverStart = (index: number) => {
+    if (leaveTimeoutRef.current) {
+      clearTimeout(leaveTimeoutRef.current);
+      leaveTimeoutRef.current = null;
+    }
+    setHoveredIdx(index);
+  };
+
+  const handleCardHoverEnd = (index: number) => {
+    if (leaveTimeoutRef.current) {
+      clearTimeout(leaveTimeoutRef.current);
+    }
+    leaveTimeoutRef.current = setTimeout(() => {
+      setHoveredIdx((current) => (current === index ? null : current));
+    }, 100);
+  };
+
+  const handleCardClick = (index: number) => {
+    // If clicked on already pinned card, toggle off to default; otherwise pin it
+    setSelectedIdx((prev) => (prev === index ? null : index));
+  };
 
   return (
     <section className={styles.skiper6Section} style={{ backgroundColor }}>
       {/* Background ambient lighting */}
       <div className={styles.bgGlowOrb} aria-hidden="true" />
 
-      {/* ─── SECTION SUB-HEADER (Top label) ─── */}
+      {/* ─── SECTION TOP BADGE ─── */}
       <div className={styles.sectionTop}>
         <div className={styles.sectionBadge}>
           <span className={styles.badgePulse} />
           <span>WHAT WE DO</span>
         </div>
         <p className={styles.sectionSubtitle}>
-          Hover any service icon to explore our digital capabilities
+          Hover to preview • Click to select a service
         </p>
       </div>
 
-      {/* ─── INTERACTIVE ICON ROW & MAGNETIC FOLLOWER ─── */}
+      {/* ─── INTERACTIVE AVATAR ROW & MAGNETIC FOLLOWER ─── */}
       <div
         ref={containerRef}
         className={styles.avatarsWrapper}
-        onPointerMove={(e) => {
-          if (containerRef.current) {
-            const rect = containerRef.current.getBoundingClientRect();
-            const n = e.clientX - rect.left;
-            const r = e.clientY - rect.top;
-            mouseX.set(n);
-            mouseY.set(r);
-          }
-        }}
-        onPointerEnter={() => cursorScale.set(1)}
-        onPointerLeave={() => cursorScale.set(0)}
+        onPointerMove={handlePointerMove}
+        onPointerEnter={handlePointerEnter}
+        onPointerLeave={handleContainerLeave}
       >
         {services.map((item, index) => {
-          const isItemHovered = hoveredIdx === index;
+          const isActive = activeIdx === index;
+          const isSelected = selectedIdx === index;
 
           return (
-            <motion.div
+            <div
               key={item.id}
-              className={styles.avatarCard}
-              animate={{
-                width: isItemHovered ? 124 : 64,
-                height: isItemHovered ? 124 : 64,
+              className={`${styles.avatarCard} ${isActive ? styles.avatarCardActive : ''}`}
+              onMouseEnter={() => handleCardHoverStart(index)}
+              onMouseLeave={() => handleCardHoverEnd(index)}
+              onClick={() => handleCardClick(index)}
+              style={{
+                borderColor: isActive ? item.accentColor : 'rgba(255, 255, 255, 0.12)',
+                boxShadow: isActive
+                  ? `0 14px 34px rgba(0, 0, 0, 0.65), 0 0 24px ${item.accentColor}45`
+                  : 'none',
               }}
-              transition={{ duration: 0.22, ease: 'easeOut' }}
-              onHoverStart={() => setHoveredIdx(index)}
-              onHoverEnd={() => setHoveredIdx(null)}
-              onClick={() => setHoveredIdx(isItemHovered ? null : index)}
             >
+              {/* Radial glow backdrop */}
               <div
-                className={styles.iconBox}
+                className={styles.iconBackdropGlow}
                 style={{
-                  borderColor: isItemHovered ? item.accentColor : 'rgba(255, 255, 255, 0.12)',
-                  boxShadow: isItemHovered ? `0 0 30px ${item.accentColor}40` : 'none',
+                  backgroundColor: item.accentColor,
+                  opacity: isActive ? 0.28 : 0.04,
                 }}
-              >
-                {/* Radial glow backdrop */}
-                <div
-                  className={styles.iconBackdropGlow}
-                  style={{
-                    backgroundColor: item.accentColor,
-                    opacity: isItemHovered ? 0.25 : 0.08,
-                  }}
-                />
+              />
 
-                {/* SVG Graphic */}
-                <div
-                  className={styles.iconGraphicWrap}
-                  style={{
-                    color: isItemHovered ? item.accentColor : '#FFFFFF',
-                    transform: isItemHovered ? 'scale(1.15)' : 'scale(1)',
-                  }}
-                >
-                  {item.icon}
-                </div>
-
-                {/* Category number */}
+              {/* Card Top bar with category number and pulse indicator */}
+              <div className={styles.cardTopBar}>
                 <span
                   className={styles.avatarNum}
                   style={{
-                    color: isItemHovered ? item.accentColor : 'rgba(255, 255, 255, 0.5)',
+                    color: isActive ? item.accentColor : 'rgba(255, 255, 255, 0.45)',
                   }}
                 >
                   {item.num}
                 </span>
-
-                {/* Expanded name tag */}
-                {isItemHovered && (
-                  <motion.span
-                    initial={{ opacity: 0, y: 4 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className={styles.expandedLabel}
-                    style={{ color: item.accentColor }}
-                  >
-                    {item.shortName}
-                  </motion.span>
+                {isActive && (
+                  <span
+                    className={styles.activeDot}
+                    style={{
+                      backgroundColor: item.accentColor,
+                      boxShadow: `0 0 8px ${item.accentColor}`,
+                    }}
+                  />
                 )}
               </div>
-            </motion.div>
+
+              {/* SVG Graphic */}
+              <div
+                className={styles.iconGraphicWrap}
+                style={{
+                  color: isActive ? item.accentColor : '#FFFFFF',
+                  transform: isActive ? 'scale(1.15)' : 'scale(1)',
+                }}
+              >
+                {item.icon}
+              </div>
+
+              {/* Clear service text label */}
+              <span
+                className={styles.cardServiceLabel}
+                style={{
+                  color: isActive ? item.accentColor : 'rgba(255, 255, 255, 0.85)',
+                  fontWeight: isActive ? 700 : 500,
+                  opacity: isActive ? 1 : 0.85,
+                }}
+              >
+                {item.shortName}
+              </span>
+
+              {/* Pinned pill tag */}
+              {isSelected && (
+                <div
+                  className={styles.pinnedPill}
+                  style={{ backgroundColor: item.accentColor }}
+                />
+              )}
+            </div>
           );
         })}
 
@@ -331,6 +393,7 @@ export default function HoverMemberServices({
             height="18"
             viewBox="0 0 16 16"
             fill="none"
+            style={{ pointerEvents: 'none' }}
           >
             <path
               d="M6.52182 2.75026L12.8858 9.11422L15.253 0.38299L6.52182 2.75026Z"
@@ -344,133 +407,86 @@ export default function HoverMemberServices({
         </motion.div>
       </div>
 
-      {/* ─── MASSIVE STAGGERED TYPOGRAPHY (Skiper6 exact wave effect) ─── */}
+      {/* ─── MASSIVE STAGGERED TYPOGRAPHY (EXACT SKIPER6 MOTION) ─── */}
       <div className={styles.typographyViewport}>
-        <AnimatePresence mode="wait">
-          {hoveredIdx === null ? (
+        {/* Default 'SERVICES' Title */}
+        <AnimatePresence>
+          {activeIdx === null && (
             <motion.div
-              key="default"
-              className={styles.titleWrap}
+              key="default-title"
+              className={styles.titleMotionWrapper}
               initial="hidden"
               animate="visible"
-              exit="hidden"
-              transition={{ duration: 0.7, ease: [0.19, 1, 0.22, 1] }}
+              exit="exit"
+              transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
             >
               <h2 className={`${styles.mainTitle} ${styles.defaultTitle}`}>
                 {Array.from(defaultName).map((char, i) => (
-                  <motion.span
-                    key={i}
-                    className={styles.charSpan}
-                    variants={letterVariantsDefault}
-                    transition={{
-                      duration: 0.7,
-                      ease: [0.19, 1, 0.22, 1],
-                      delay: getDelay(i, defaultName.length),
-                    }}
-                  >
-                    {char === ' ' ? '\u00A0' : char}
-                  </motion.span>
-                ))}
-              </h2>
-            </motion.div>
-          ) : (
-            <motion.div
-              key={services[hoveredIdx].id}
-              className={styles.titleWrap}
-              initial="hidden"
-              animate="visible"
-              exit="hidden"
-              transition={{ duration: 0.7, ease: [0.19, 1, 0.22, 1] }}
-            >
-              <h2
-                className={`${styles.mainTitle} ${styles.hoverTitle}`}
-                style={{
-                  color: services[hoveredIdx].accentColor || hoverTextColor,
-                  textShadow: `0 0 60px ${services[hoveredIdx].accentColor}50`,
-                }}
-              >
-                {Array.from(services[hoveredIdx].name).map((char, i) => (
-                  <motion.span
-                    key={i}
-                    className={styles.charSpan}
-                    variants={letterVariantsIn}
-                    transition={{
-                      duration: 0.7,
-                      ease: [0.19, 1, 0.22, 1],
-                      delay: getDelay(i, services[hoveredIdx].name.length),
-                    }}
-                  >
-                    {char === ' ' ? '\u00A0' : char}
-                  </motion.span>
+                  <span key={i} className={styles.charWrapper}>
+                    <motion.span
+                      className={styles.charSpan}
+                      variants={letterVariantsDefault}
+                      transition={{
+                        duration: 0.8,
+                        ease: [0.19, 1, 0.22, 1],
+                        delay: getDelay(i, defaultName.length),
+                      }}
+                    >
+                      {char === ' ' ? '\u00a0' : char}
+                    </motion.span>
+                  </span>
                 ))}
               </h2>
             </motion.div>
           )}
         </AnimatePresence>
-      </div>
 
-      {/* ─── ACTIVE SERVICE DETAIL DRAWER / META ─── */}
-      <div className={styles.serviceMetaBar}>
-        <AnimatePresence mode="wait">
-          {activeService ? (
-            <motion.div
-              key={activeService.id}
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.3 }}
-              className={styles.metaContent}
-            >
-              <div className={styles.metaLeft}>
-                <span
-                  className={styles.metaNum}
-                  style={{ color: activeService.accentColor }}
-                >
-                  {activeService.num}
-                </span>
-                <p className={styles.metaDesc}>{activeService.desc}</p>
-              </div>
-
-              <div className={styles.metaRight}>
-                <div className={styles.metaTags}>
-                  {activeService.tags.map((t) => (
-                    <span key={t} className={styles.metaTag}>
-                      {t}
-                    </span>
-                  ))}
-                </div>
-                <Link
-                  href={activeService.href}
-                  className={styles.metaLink}
+        {/* Active Hovered / Pinned Service Titles */}
+        {services.map((item, index) => (
+          <AnimatePresence key={item.id}>
+            {activeIdx === index && (
+              <motion.div
+                key={item.id}
+                className={styles.titleMotionWrapper}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
+              >
+                <h2
+                  className={`${styles.mainTitle} ${styles.hoverTitle}`}
                   style={{
-                    color: activeService.accentColor,
-                    borderColor: `${activeService.accentColor}50`,
-                    background: `${activeService.accentColor}18`,
+                    color: item.accentColor,
+                    textShadow: `0 0 60px ${item.accentColor}50`,
                   }}
                 >
-                  Explore service →
-                </Link>
-              </div>
-            </motion.div>
-          ) : (
-            <motion.div
-              key="hint"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className={styles.metaPlaceholder}
-            >
-              <span>{services.length} Specialized Capabilities</span>
-              <span className={styles.hintDot}>•</span>
-              <span>Next.js • UI/UX • Motion & 3D • Performance</span>
-              <span className={styles.hintDot}>•</span>
-              <Link href="/services" className={styles.viewAllLink}>
-                View All Services →
-              </Link>
-            </motion.div>
-          )}
-        </AnimatePresence>
+                  {Array.from(item.name).map((char, i) => (
+                    <span key={i} className={styles.charWrapper}>
+                      <motion.span
+                        className={styles.charSpan}
+                        variants={letterVariantsIn}
+                        transition={{
+                          duration: 0.8,
+                          ease: [0.19, 1, 0.22, 1],
+                          delay: getDelay(i, item.name.length),
+                        }}
+                      >
+                        {char === ' ' ? '\u00a0' : char}
+                      </motion.span>
+                    </span>
+                  ))}
+                </h2>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        ))}
+      </div>
+
+      {/* ─── SLEEK STATIC FOOTER CAPABILITY LINK ─── */}
+      <div className={styles.sectionBottom}>
+        <Link href="/services" className={styles.exploreLink}>
+          Explore all services & capabilities <span className={styles.linkArrow}>→</span>
+        </Link>
       </div>
     </section>
   );
