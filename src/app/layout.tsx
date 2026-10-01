@@ -21,11 +21,11 @@ export const metadata: Metadata = {
     "NYX is a digital design studio building websites and UI/UX experiences that turn attention into action. Website Design, Development & UI/UX.",
   icons: {
     icon: [
-      { url: '/favicon.ico' },
-      { url: '/images/favicon.jpeg', type: 'image/jpeg' },
+      { url: '/images/favicon.png?v=3', type: 'image/png' },
+      { url: '/favicon.ico?v=3', type: 'image/x-icon' },
     ],
-    shortcut: '/favicon.ico',
-    apple: '/images/favicon.jpeg',
+    shortcut: '/images/favicon.png?v=3',
+    apple: '/images/favicon.png?v=3',
   },
   keywords: ["website design", "web development", "UI/UX design", "digital agency", "NYX"],
   authors: [{ name: "NYX Studio" }],

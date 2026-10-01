@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { getFeaturedProjects } from '@/data/projects';
 import HoverExpandGallery from '@/components/ui/HoverExpandGallery';
@@ -88,31 +89,6 @@ export default function Home() {
       {/* ─── SKIPER 19: HOW WE WORK (SVG FOLLOW SCROLL & 4 MEETING CARDS) ─── */}
       <Skiper19HowWeWork />
 
-      {/* ─── INDUSTRIES ─── */}
-      <section className="section section--light-gray">
-        <div className="container">
-          <div className={styles.industriesHeader}>
-            <span className="section-label">Industries</span>
-            <h2 className="t-h2">Who we build for.</h2>
-          </div>
-          <div className={styles.industriesList}>
-            {[
-              'Professional Services',
-              'Construction & Trades',
-              'Restaurants & Hospitality',
-              'Agencies',
-              'Startups',
-              'Local Businesses',
-              'Growing Brands',
-            ].map((industry) => (
-              <div key={industry} className={`${styles.industryItem} reveal`}>
-                <span className={styles.industryArrow}>→</span>
-                <span className={styles.industryLabel}>{industry}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ─── CASE STUDY SPOTLIGHT ─── */}
       <section className="section section--ink">
@@ -190,8 +166,17 @@ export default function Home() {
               </Link>
             </div>
           </div>
-          <div className={styles.finalCtaDecor} aria-hidden="true">
-            <span className={styles.finalCtaBigText}>NYX</span>
+          <div className={`${styles.finalCtaVisual} reveal reveal-delay-2`}>
+            <div className={styles.finalCtaLogoWrapper}>
+              <Image
+                src="/images/favicon.jpeg"
+                alt="NYX Emblem"
+                width={360}
+                height={360}
+                className={styles.finalCtaLogoImg}
+                priority
+              />
+            </div>
           </div>
         </div>
       </section>
