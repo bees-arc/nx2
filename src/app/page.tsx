@@ -97,7 +97,7 @@ export default function Home() {
           <div className={styles.spotlightHeader}>
             <span className="section-label section-label--neutral">Featured Result</span>
             <h2 className="t-h2" style={{ maxWidth: '620px' }}>
-              How NYX transformed Meridian Law's digital presence.
+              How NYX-SaaS transformed Meridian Law's digital presence.
             </h2>
           </div>
           <div className={styles.spotlightGrid}>
@@ -110,7 +110,7 @@ export default function Home() {
                 </p>
               </div>
               <div className={`${styles.spotlightBlock} ${styles.spotlightSolution}`}>
-                <p className={styles.spotlightBlockLabel}>The NYX Solution</p>
+                <p className={styles.spotlightBlockLabel}>The NYX-SaaS Solution</p>
                 <p className="t-body" style={{ color: 'rgba(255,255,255,0.75)' }}>
                   A complete redesign — restructured for how clients think, not how
                   lawyers think. Benefit-led, trust-building, and conversion-focused.
@@ -142,20 +142,20 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── FINAL CTA ─── */}
+      {/* ─── FINAL CTA (ORIGINAL LIGHT COLOR, ZERO DELAY) ─── */}
       <section className={styles.finalCta}>
         <div className={styles.finalCtaBg} aria-hidden="true">
           <div className={styles.finalCtaOrb} />
         </div>
         <div className={`container ${styles.finalCtaInner}`}>
           <div className={styles.finalCtaContent}>
-            <h2 className={`t-h1 reveal`}>
+            <h2 className="t-h1">
               Have a project in mind?
             </h2>
-            <p className={`t-body-lg text-muted reveal reveal-delay-1`}>
+            <p className="t-body-lg text-muted">
               Let's build something worth remembering.
             </p>
-            <div className={`${styles.finalCtaButtons} reveal reveal-delay-2`}>
+            <div className={styles.finalCtaButtons}>
               <Link href="/contact" className="btn btn--primary btn--lg">
                 Start a Project
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -167,11 +167,11 @@ export default function Home() {
               </Link>
             </div>
           </div>
-          <div className={`${styles.finalCtaVisual} reveal reveal-delay-2`}>
+          <div className={styles.finalCtaVisual}>
             <div className={styles.finalCtaLogoWrapper}>
               <Image
                 src="/images/favicon.jpeg"
-                alt="NYX Emblem"
+                alt="NYX-SaaS Emblem"
                 width={360}
                 height={360}
                 className={styles.finalCtaLogoImg}

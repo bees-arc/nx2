@@ -3,13 +3,13 @@ import ContactForm from '@/components/contact/ContactForm';
 import styles from './page.module.css';
 
 export const metadata: Metadata = {
-  title: 'Contact — Start a Project | NYX Studio',
+  title: 'Contact — Start a Project | NYX-SaaS',
   description:
-    'Have a project in mind? Partner with NYX Studio to build conversion-focused websites, Next.js web applications, and precision UI/UX design systems.',
+    'Have a project in mind? Partner with NYX-SaaS to build conversion-focused websites, Next.js web applications, and precision UI/UX design systems.',
 };
 
 const studioContacts = [
-  { label: 'General & RFPs', value: 'hello@nyxstudio.co', href: 'mailto:hello@nyxstudio.co' },
+  { label: 'General & RFPs', value: 'hello@nyx-saas.com', href: 'mailto:hello@nyx-saas.com' },
   { label: 'Studio Direct', value: '+94 11 234 5678', href: 'tel:+94112345678' },
   { label: 'Studio Base', value: 'Colombo, Sri Lanka — Deploying Worldwide', href: '#' },
 ];
