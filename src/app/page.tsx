@@ -4,6 +4,7 @@ import HoverExpandGallery from '@/components/ui/HoverExpandGallery';
 import HoverMemberServices from '@/components/ui/HoverMemberServices';
 import LiquidHero from '@/components/ui/LiquidHero';
 import Skiper19HowWeWork from '@/components/ui/Skiper19HowWeWork';
+import Skiper60SideNav from '@/components/ui/Skiper60SideNav';
 import styles from './page.module.css';
 
 export default function Home() {
@@ -64,7 +65,7 @@ export default function Home() {
       </section>
 
 
-      {/* ─── WHY NYX ─── */}
+      {/* ─── WHY NYX: VALUE PROPOSITION ─── */}
       <section className="section section--dark">
         <div className="container">
           <div className={styles.whyHeader}>
@@ -73,46 +74,8 @@ export default function Home() {
               Not just another agency.<br />A different way of thinking.
             </h2>
           </div>
-          <div className={styles.whyGrid}>
-            {[
-              {
-                icon: '◎',
-                title: 'Business-first design',
-                desc: 'Every design decision is tied to a business goal — not just aesthetics.',
-              },
-              {
-                icon: '◈',
-                title: 'Custom experiences',
-                desc: 'No templates. No shortcuts. Every project is built specifically for you.',
-              },
-              {
-                icon: '◉',
-                title: 'Conversion-focused thinking',
-                desc: 'We design for visitors to take action — not just to look at the page.',
-              },
-              {
-                icon: '◐',
-                title: 'Modern development',
-                desc: 'Next.js, performance-optimised, SEO-ready. Built for today\'s standards.',
-              },
-              {
-                icon: '◑',
-                title: 'Responsive by default',
-                desc: 'Every build is mobile-first. Always. Not as an afterthought.',
-              },
-              {
-                icon: '◒',
-                title: 'Performance-focused delivery',
-                desc: 'Fast sites rank better and convert more. Speed is a feature.',
-              },
-            ].map((item, i) => (
-              <div key={item.title} className={`${styles.whyCard} reveal reveal-delay-${(i % 3) + 1}`}>
-                <div className={styles.whyIcon}>{item.icon}</div>
-                <h3 className={`t-h4 ${styles.whyCardTitle}`}>{item.title}</h3>
-                <p className={`t-small ${styles.whyCardDesc}`}>{item.desc}</p>
-              </div>
-            ))}
-          </div>
+
+          <Skiper60SideNav />
         </div>
       </section>
 
