@@ -21,7 +21,7 @@ const processFaqs = [
   },
   {
     q: 'What is your typical project timeline?',
-    a: 'Our standard production sprint is 4 weeks from discovery to final production launch. Complex custom applications take 6 to 8 weeks.',
+    a: 'Our standard production sprint is strictly 2 weeks (14 calendar days) from discovery kick-off to final production launch. Complex custom applications take 3 to 4 weeks.',
   },
   {
     q: 'Do you work under an NDA?',

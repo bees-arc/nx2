@@ -22,15 +22,15 @@ const budgetRanges = [
 
 const timelineOptions = [
   'Immediately',
-  'Within 2-4 weeks',
-  '1-3 months',
+  'Within 2 weeks (Standard Sprint)',
+  '1-2 months',
   'Exploring options',
 ];
 
 export default function ContactForm() {
   const [selectedServices, setSelectedServices] = useState<string[]>(['Website Design']);
   const [selectedBudget, setSelectedBudget] = useState<string>('$10k — $25k');
-  const [selectedTimeline, setSelectedTimeline] = useState<string>('Within 2-4 weeks');
+  const [selectedTimeline, setSelectedTimeline] = useState<string>('Within 2 weeks (Standard Sprint)');
   const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
   const [formData, setFormData] = useState({
     name: '',

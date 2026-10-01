@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 const studioMetrics = [
   { val: '17', label: 'Engineered Releases' },
   { val: '99+', label: 'Average PageSpeed' },
-  { val: '4 Wks', label: 'Average Sprint' },
+  { val: '2 Wks', label: 'Average Sprint' },
   { val: '100%', label: 'In-House Craft' },
 ];
 

@@ -27,7 +27,7 @@ const steps: StepData[] = [
   {
     id: 'discover',
     num: '01',
-    duration: 'Week 01',
+    duration: 'Days 01–03',
     title: 'Discover',
     desc: 'We learn your business, audience, and goals before touching a pixel — extracting your core value proposition and analyzing competitive landscapes.',
     side: 'left',
@@ -35,7 +35,7 @@ const steps: StepData[] = [
   {
     id: 'design',
     num: '02',
-    duration: 'Week 02',
+    duration: 'Days 04–07',
     title: 'Design',
     desc: 'We craft the visual direction — shaping an unmistakable digital presence with interactive wireframes, modular design systems, and fluid prototypes.',
     side: 'right',
@@ -43,7 +43,7 @@ const steps: StepData[] = [
   {
     id: 'build',
     num: '03',
-    duration: 'Week 03',
+    duration: 'Days 08–11',
     title: 'Build',
     desc: 'We develop the real thing — engineering blazing Next.js platforms with production-grade TypeScript, fluid animations, and headless CMS integrations.',
     side: 'left',
@@ -51,7 +51,7 @@ const steps: StepData[] = [
   {
     id: 'launch',
     num: '04',
-    duration: 'Week 04',
+    duration: 'Days 12–14',
     title: 'Launch',
     desc: 'We deploy, configure analytics, optimize Core Web Vitals to 99+, and stress-test across every device to make sure everything is perfect.',
     side: 'right',
