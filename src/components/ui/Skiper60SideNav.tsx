@@ -121,40 +121,19 @@ export default function Skiper60SideNav() {
         })}
       </div>
 
-      {/* Right: Dynamic Content Panel with AnimatePresence */}
+      {/* Right: Clean Dynamic Text Panel with AnimatePresence */}
       <div className={styles.contentWrap}>
         <AnimatePresence mode="wait">
           <motion.div
             key={activeItem.id}
-            initial={{ opacity: 0, y: 8 }}
+            initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
+            exit={{ opacity: 0, y: -6 }}
             transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className={styles.contentCard}
+            className={styles.contentArea}
           >
-            <div>
-              <div className={styles.contentTop}>
-                <div className={styles.contentBadge}>
-                  <span className={styles.badgePulse} />
-                  <span>Principle {activeItem.num}</span>
-                </div>
-                <span className={styles.contentIndex}>0{activeIdx + 1} / 06</span>
-              </div>
-
-              <h3 className={styles.contentTitle}>{activeItem.title}</h3>
-
-              <p className={styles.contentDesc}>{activeItem.fullDesc}</p>
-            </div>
-
-            {/* Highlight Tags */}
-            <div className={styles.highlightsList}>
-              {activeItem.highlights.map((tag) => (
-                <span key={tag} className={styles.highlightTag}>
-                  <span className={styles.highlightDot} />
-                  {tag}
-                </span>
-              ))}
-            </div>
+            <h3 className={styles.contentTitle}>{activeItem.title}</h3>
+            <p className={styles.contentDesc}>{activeItem.fullDesc}</p>
           </motion.div>
         </AnimatePresence>
       </div>
