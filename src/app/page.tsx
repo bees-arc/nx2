@@ -3,6 +3,7 @@ import { getFeaturedProjects } from '@/data/projects';
 import HoverExpandGallery from '@/components/ui/HoverExpandGallery';
 import HoverMemberServices from '@/components/ui/HoverMemberServices';
 import LiquidHero from '@/components/ui/LiquidHero';
+import Skiper19HowWeWork from '@/components/ui/Skiper19HowWeWork';
 import styles from './page.module.css';
 
 export default function Home() {
@@ -115,38 +116,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── OUR APPROACH ─── */}
-      <section className="section">
-        <div className="container">
-          <div className={styles.approachHeader}>
-            <span className="section-label">Our Approach</span>
-            <h2 className="t-h2">How we work.</h2>
-            <p className="t-body-lg text-muted" style={{ maxWidth: '540px', marginTop: '1rem' }}>
-              Simple, structured, and always moving forward.
-            </p>
-          </div>
-          <div className={styles.approachSteps}>
-            {[
-              { num: '01', label: 'Discover', desc: 'We learn your business, audience, and goals before touching a pixel.' },
-              { num: '02', label: 'Design', desc: 'We craft the visual direction — layouts, hierarchy, and every detail.' },
-              { num: '03', label: 'Build', desc: 'We develop the real thing — fast, responsive, and production-ready.' },
-              { num: '04', label: 'Launch', desc: 'We deploy, configure analytics, and make sure everything is perfect.' },
-            ].map((step, i) => (
-              <div key={step.num} className={`${styles.approachStep} reveal reveal-delay-${i + 1}`}>
-                <div className={styles.approachNum}>{step.num}</div>
-                <div className={styles.approachLine} />
-                <h3 className={`t-h4 ${styles.approachLabel}`}>{step.label}</h3>
-                <p className={`t-small ${styles.approachDesc}`}>{step.desc}</p>
-              </div>
-            ))}
-          </div>
-          <div className={`${styles.approachCta} reveal`}>
-            <Link href="/process" className="btn btn--outline">
-              See Full Process →
-            </Link>
-          </div>
-        </div>
-      </section>
+      {/* ─── SKIPER 19: HOW WE WORK (SVG FOLLOW SCROLL & 4 MEETING CARDS) ─── */}
+      <Skiper19HowWeWork />
 
       {/* ─── INDUSTRIES ─── */}
       <section className="section section--light-gray">
