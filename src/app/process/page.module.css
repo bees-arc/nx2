@@ -1,0 +1,237 @@
+/* ─── PROCESS PAGE STYLES ─── */
+
+.hero {
+  padding: 160px 0 70px;
+  position: relative;
+  overflow: hidden;
+  background: var(--white);
+}
+
+.heroBg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+
+.heroTitle {
+  margin-top: 0.75rem;
+  margin-bottom: 1.25rem;
+  max-width: 760px;
+}
+
+.heroItalic {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--nyx-blue);
+}
+
+.heroSub {
+  color: var(--muted);
+  max-width: 620px;
+  line-height: 1.65;
+}
+
+/* ─── SPRINT SECTION (DARK EDITORIAL CANVAS) ─── */
+.sprintSection {
+  width: 100%;
+  background: #0E0E0C;
+  padding: 6rem 0 8.5rem;
+  color: #ffffff;
+  position: relative;
+}
+
+.sprintList {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem;
+}
+
+.sprintCard {
+  background: #141412;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 2.75rem 2.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.sprintCard:hover {
+  transform: translateY(-4px);
+  border-color: rgba(37, 99, 235, 0.35);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.weekPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #DBEAFE;
+}
+
+.weekDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.phaseNum {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #8A8A84;
+  letter-spacing: 0.08em;
+}
+
+.phaseTitle {
+  font-size: 1.65rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--white, #ffffff);
+  margin-bottom: 0.6rem;
+}
+
+.phaseTagline {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--nyx-blue, #2563EB);
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.phaseSummary {
+  font-size: 0.925rem;
+  line-height: 1.65;
+  color: var(--dark-muted-text, #A1A1AA);
+  margin-bottom: 2rem;
+  flex-grow: 1;
+}
+
+/* Deliverables Box */
+.deliverablesBox {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  padding: 1.5rem;
+}
+
+.deliverablesTitle {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #8A8A84;
+  margin-bottom: 0.85rem;
+}
+
+.deliverablesList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.deliverableItem {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 0.875rem;
+  color: #E4E4E7;
+}
+
+.checkIcon {
+  color: var(--nyx-blue, #2563EB);
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+/* ─── PRINCIPLES SECTION ─── */
+.principlesHeader {
+  margin-bottom: 3.5rem;
+}
+
+.principlesGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem;
+}
+
+.principleCard {
+  padding: 2.25rem;
+  background: var(--white);
+  border: 1px solid var(--light-gray);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.principleTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.principleDesc {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* ─── BOTTOM CTA ─── */
+.bottomCta {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  text-align: left;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 991px) {
+  .sprintList {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .principlesGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 130px 0 50px;
+  }
+
+  .sprintSection {
+    padding: 4rem 0 6rem;
+  }
+
+  .sprintCard {
+    padding: 1.75rem;
+  }
+}

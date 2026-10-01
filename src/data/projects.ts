@@ -523,3 +523,27 @@ export function getProjectBySlug(slug: string): Project | undefined {
 export function getFeaturedProjects(): Project[] {
   return projects.filter((p) => p.featured);
 }
+
+const projectImages: Record<string, string> = {
+  'velvet-dreams-studio': '/images/skiper35/imgp3.png',
+  'neon-pulse-agency': '/images/skiper35/illstration15.png',
+  'midnight-canvas': '/images/skiper35/img32.png',
+  'echo-digital-lab': '/images/skiper35/img27.png',
+  'skiper-creative-co': '/images/skiper35/img5.webp',
+  'cosmic-brew-studios': '/images/skiper35/illstration12.png',
+  'horizon-typography': '/images/skiper35/illstration13.png',
+  'waves-and-motion': '/images/skiper35/img8.webp',
+  'stellar-workshop': '/images/skiper35/illstration9.png',
+  'prism-media-house': '/images/skiper35/img17.png',
+  'aurora-design-co': '/images/skiper35/illstration5.png',
+  'flux-interactive': '/images/skiper35/img12.png',
+  'ember-creative-lab': '/images/skiper35/illstration3.png',
+  'zenith-brand-studio': '/images/skiper35/img15.png',
+  'quantum-visual-arts': '/images/skiper35/img21.png',
+  'meridian-law': '/images/skiper35/img8.png',
+  'forgehaus': '/images/skiper35/img1.png',
+};
+
+export function getProjectImage(slug: string): string {
+  return projectImages[slug] || '/images/skiper35/imgp3.png';
+}

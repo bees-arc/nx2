@@ -1,9 +1,10 @@
-/* ─── HERO ─── */
+/* ─── SERVICES PAGE STYLES ─── */
 
 .hero {
   padding: 160px 0 80px;
   position: relative;
   overflow: hidden;
+  background: var(--white);
 }
 
 .heroOrb {
@@ -20,18 +21,24 @@
 .heroTitle {
   margin-bottom: 1.25rem;
   margin-top: 0.75rem;
-  max-width: 700px;
+  max-width: 760px;
+}
+
+.heroItalic {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--nyx-blue);
 }
 
 .heroSub {
-  max-width: 560px;
+  max-width: 620px;
   color: var(--muted);
+  line-height: 1.65;
 }
 
 /* ─── SERVICE SECTIONS ─── */
-
 .serviceSection {
-  padding: 6rem 0;
+  padding: 6.5rem 0;
   border-top: 1px solid var(--light-gray);
 }
 
@@ -49,20 +56,20 @@
 .serviceLeft {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.25rem;
 }
 
 .serviceNum {
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   color: var(--nyx-blue);
-  margin-bottom: 0.25rem;
 }
 
 .serviceTagline {
-  color: var(--dark-muted);
-  font-weight: 500;
+  color: var(--ink);
+  font-weight: 600;
+  line-height: 1.5;
 }
 
 .serviceDesc {
@@ -70,140 +77,206 @@
   line-height: 1.7;
 }
 
-.serviceBtn { margin-top: 0.5rem; }
-
 .serviceRight {
-  padding: 2.5rem;
+  padding: 2.75rem;
   background: var(--white);
   border-radius: var(--radius-xl);
   border: 1px solid var(--light-gray);
   box-shadow: var(--shadow-sm);
 }
 
+.deliverablesHeading {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #8A8A84;
+  margin-bottom: 1.25rem;
+}
+
 .serviceItemsList {
   display: flex;
   flex-direction: column;
-  gap: 0;
 }
 
 .serviceItem {
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 1rem 0;
+  padding: 1.1rem 0;
   border-bottom: 1px solid var(--light-gray);
   transition: padding-left 0.2s ease;
 }
 
-.serviceItem:last-child { border-bottom: none; }
+.serviceItem:last-child {
+  border-bottom: none;
+}
 
-.serviceItem:hover { padding-left: 0.5rem; }
+.serviceItem:hover {
+  padding-left: 0.5rem;
+}
 
 .serviceItemDot {
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
   flex-shrink: 0;
 }
 
 .serviceItemLabel {
-  font-size: 1rem;
+  font-size: 1.05rem;
   font-weight: 500;
   color: var(--ink);
 }
 
-/* ─── FOCUS AREAS ─── */
-
-.focusHeader {
+/* ─── TECH STACK SECTION (DARK CANVAS) ─── */
+.techHeader {
   margin-bottom: 3.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
 }
 
-.focusGrid {
+.techGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5px;
-  background: rgba(255,255,255,0.08);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
 }
 
-.focusCard {
-  background: var(--dark-surface);
-  padding: 2.5rem;
+.techCard {
+  background: #141412;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 0.875rem;
-  transition: background 0.25s ease;
-}
-
-.focusCard:hover { background: #1E1E1C; }
-
-.focusIcon {
-  font-size: 1.5rem;
-  color: var(--nyx-blue-light);
-  line-height: 1;
-}
-
-.focusLabel { color: var(--white); }
-
-.focusDesc {
-  color: var(--dark-muted-text);
-  line-height: 1.6;
-}
-
-/* ─── PROCESS ─── */
-
-.processHeader {
-  margin-bottom: 3.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.processTrack {
-  display: flex;
-  align-items: center;
   gap: 0.5rem;
-  flex-wrap: wrap;
+  position: relative;
+  transition: all 0.25s ease;
 }
 
-.processNode {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+.techCard:hover {
+  background: #181816;
+  border-color: rgba(37, 99, 235, 0.4);
+  transform: translateY(-3px);
 }
 
-.processNodeNum {
-  font-size: 0.6875rem;
+.techDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--nyx-blue, #2563EB);
+  margin-bottom: 0.5rem;
+}
+
+.techName {
+  font-size: 1.2rem;
   font-weight: 700;
-  color: var(--nyx-blue);
+  color: var(--white, #ffffff);
+  margin: 0;
+}
+
+.techRole {
+  font-size: 0.85rem;
+  color: var(--dark-muted-text, #A1A1AA);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ─── COMPARISON MATRIX ─── */
+.compHeader {
+  margin-bottom: 3.5rem;
+}
+
+.tableWrapper {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 16px;
+  border: 1px solid var(--light-gray);
+  background: var(--white);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+}
+
+.compTable {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.compTable th,
+.compTable td {
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid var(--light-gray);
+}
+
+.compTable tr:last-child td {
+  border-bottom: none;
+}
+
+.thFeature {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-transform: uppercase;
   letter-spacing: 0.06em;
+  color: var(--muted);
+  width: 25%;
 }
 
-.processNodeArrow {
-  color: var(--mid-gray);
-  font-size: 0.875rem;
-  margin: 0 0.25rem;
+.thGeneric {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  width: 37.5%;
 }
 
-.processNodeLabel {
-  font-size: 1rem;
+.thNyx {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--nyx-blue);
+  background: rgba(37, 99, 235, 0.04);
+  width: 37.5%;
+}
+
+.tdFeature {
   font-weight: 600;
   color: var(--ink);
-  padding: 0.5rem 1rem;
-  border: 1.5px solid var(--light-gray);
-  border-radius: 100px;
-  white-space: nowrap;
+  font-size: 0.95rem;
 }
 
-.processCta { margin-top: 3rem; }
+.tdGeneric {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.tdNyx {
+  font-weight: 600;
+  color: var(--ink);
+  background: rgba(37, 99, 235, 0.04);
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.checkBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(37, 99, 235, 0.15);
+  color: var(--nyx-blue, #2563EB);
+  font-size: 0.75rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
 
 /* ─── BOTTOM CTA ─── */
-
-.bottomCta { padding: 3rem 0; }
+.bottomCta {
+  padding: 5rem 0;
+}
 
 .bottomCtaInner {
   display: flex;
@@ -211,13 +284,37 @@
   gap: 1.5rem;
 }
 
-@media (max-width: 900px) {
-  .serviceGrid { grid-template-columns: 1fr; gap: 3rem; }
-  .focusGrid { grid-template-columns: repeat(2, 1fr); }
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1050px) {
+  .serviceGrid {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+  }
+
+  .techGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-@media (max-width: 600px) {
-  .focusGrid { grid-template-columns: 1fr; }
-  .processTrack { flex-direction: column; align-items: flex-start; }
-  .processNodeArrow { transform: rotate(90deg); }
+@media (max-width: 768px) {
+  .hero {
+    padding: 130px 0 50px;
+  }
+
+  .serviceSection {
+    padding: 4.5rem 0;
+  }
+
+  .serviceRight {
+    padding: 1.75rem;
+  }
+
+  .techGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .compTable th,
+  .compTable td {
+    padding: 1.1rem 1.25rem;
+  }
 }

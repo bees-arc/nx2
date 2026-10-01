@@ -3,9 +3,9 @@ import Link from 'next/link';
 import styles from './page.module.css';
 
 export const metadata: Metadata = {
-  title: 'Services',
+  title: 'Services — Website Design, Next.js Development & UI/UX | NYX Studio',
   description:
-    'Website Design, Website Development, and UI/UX Design — built to perform. See what NYX delivers for every project.',
+    'Website Design, Next.js Development, and UI/UX Design engineered to perform. See what NYX delivers for high-growth commercial projects.',
 };
 
 const services = [
@@ -13,17 +13,17 @@ const services = [
     id: 'design',
     num: '01',
     title: 'Website Design',
-    tagline: 'Websites that communicate value at first glance.',
+    tagline: 'Websites that communicate commercial value at first glance.',
     description:
-      'Great design is not decoration — it is clarity. Every layout, every section, every element serves a purpose. We design marketing sites, business websites, and corporate platforms that work as hard as you do.',
+      'Great design is not superficial decoration — it is commercial clarity. Every layout, typography hierarchy, and visual element serves a direct purpose: communicating authority and converting visitors into loyal clients.',
     items: [
-      'Marketing websites',
-      'Business websites',
-      'Landing pages',
-      'Corporate websites',
-      'Website redesigns',
-      'Responsive design',
-      'Conversion-focused layouts',
+      'Bespoke Marketing Websites',
+      'Corporate & Institutional Platforms',
+      'High-Converting Landing Pages',
+      'Full Digital Brand Systems',
+      'Complete Website Redesigns',
+      'Responsive Mobile-First Architecture',
+      'Conversion-Focused User Journeys',
     ],
     accent: '#2563EB',
   },
@@ -31,83 +31,79 @@ const services = [
     id: 'development',
     num: '02',
     title: 'Website Development',
-    tagline: 'Fast. Responsive. Built to last.',
+    tagline: 'Ultra-fast. Responsive. Engineered in Next.js.',
     description:
-      'We build in Next.js — the modern standard for performance-focused websites. Clean code, SEO-ready structure, and integrations that actually work. Every line serves a purpose.',
+      'We build exclusively in Next.js — the gold standard for high-performance web applications. Zero bloated templates, zero generic page builders. Only clean, type-safe TypeScript code and global edge network deployments.',
     items: [
-      'Next.js development',
-      'Responsive implementation',
-      'Interactive experiences',
-      'CMS / content integration',
-      'Forms & booking integrations',
-      'Analytics setup',
-      'SEO-ready structure',
-      'Performance optimisation',
+      'Next.js (App Router) Architecture',
+      'Type-Safe TypeScript Engineering',
+      'Fluid Framer Motion Micro-Interactions',
+      'Headless CMS & Content Pipelines',
+      'Lead Generation & Booking Integrations',
+      'Edge Caching & Core Web Vitals (99+)',
+      'Technical SEO & OpenGraph Optimization',
+      'Cross-Device & Browser Stress-Testing',
     ],
-    accent: '#1D4ED8',
+    accent: '#3B82F6',
   },
   {
     id: 'uiux',
     num: '03',
-    title: 'UI/UX Design',
-    tagline: 'Interfaces people actually want to use.',
+    title: 'UI/UX Design Systems',
+    tagline: 'Interfaces your customers actually love using.',
     description:
-      'Research-backed design — from understanding your users to delivering polished, production-ready interfaces. We make digital experiences feel effortless.',
+      'Research-backed interface architecture — from user psychology analysis to delivery of production-ready design tokens. We remove friction so digital products feel intuitive and effortless.',
     items: [
-      'UX research',
-      'User flows',
-      'Wireframes',
-      'Interface design',
-      'Design systems',
-      'Responsive UI',
-      'Interactive prototypes',
+      'User Research & Competitor Benchmarking',
+      'Information Architecture & Sitemaps',
+      'Low & High-Fidelity Wireframes',
+      'Modular Figma Design Systems',
+      'Interactive Kinetic Prototypes',
+      'Design Token Libraries (CSS & React)',
+      'Accessibility (WCAG 2.1 AA) Compliance',
+      'Developer Handover & Documentation',
     ],
-    accent: '#1E40AF',
+    accent: '#60A5FA',
   },
 ];
 
-const focusAreas = [
-  {
-    icon: '◎',
-    label: 'Design',
-    desc: 'Purposeful, conversion-led visual design.',
-  },
-  {
-    icon: '◈',
-    label: 'Usability',
-    desc: 'Intuitive navigation and clear user journeys.',
-  },
-  {
-    icon: '⚡',
-    label: 'Speed',
-    desc: 'Performance-first builds. Fast on every device.',
-  },
-  {
-    icon: '📱',
-    label: 'Mobile',
-    desc: 'Mobile-first from pixel one. Always.',
-  },
-  {
-    icon: '◉',
-    label: 'Conversion',
-    desc: 'Every element designed to drive action.',
-  },
-  {
-    icon: '◐',
-    label: 'Maintainability',
-    desc: 'Clean, structured code you can actually work with.',
-  },
+const techStack = [
+  { name: 'Next.js 15', role: 'Full-Stack React Framework' },
+  { name: 'TypeScript', role: 'Production Type Safety' },
+  { name: 'Framer Motion', role: 'Physics Kinetic Engine' },
+  { name: 'Vanilla CSS Modules', role: 'Zero-Runtime Bloat' },
+  { name: 'Figma', role: 'Collaborative Design System' },
+  { name: 'Supabase', role: 'Serverless PostgreSQL' },
+  { name: 'Vercel Edge', role: 'Sub-50ms Global Routing' },
+  { name: 'Lighthouse 99+', role: 'Guaranteed Performance' },
 ];
 
-const processSteps = [
-  { step: '01', label: 'Discovery' },
-  { step: '02', label: 'Strategy' },
-  { step: '03', label: 'UX' },
-  { step: '04', label: 'UI Design' },
-  { step: '05', label: 'Development' },
-  { step: '06', label: 'QA' },
-  { step: '07', label: 'Launch' },
-  { step: '08', label: 'Support' },
+const comparisons = [
+  {
+    feature: 'Development Stack',
+    generic: 'Bloated WordPress / Elementor / Webflow templates',
+    nyx: 'Custom Next.js App Router & clean TypeScript',
+  },
+  {
+    feature: 'PageSpeed & Performance',
+    generic: '30-60 on Google Lighthouse (laggy on mobile)',
+    nyx: '95-100 on Google PageSpeed (instantaneous load)',
+  },
+  {
+    feature: 'Communication Layer',
+    generic: 'Account managers & junior sub-contractors',
+    nyx: 'Direct access to senior founders and engineers',
+  },
+  {
+    feature: 'Design Uniqueness',
+    generic: 'Off-the-shelf theme modified with stock icons',
+    nyx: '100% bespoke design system tailored to your brand',
+  },
+  {
+    feature: 'Delivery Schedule',
+    generic: '3-6 months with frequent scope creep',
+    nyx: 'Synchronized 4-week fixed-timeline sprint',
+  },
 ];
 
 export default function ServicesPage() {
@@ -117,19 +113,19 @@ export default function ServicesPage() {
       <section className={styles.hero}>
         <div className={styles.heroOrb} aria-hidden="true" />
         <div className="container">
-          <span className="section-label animate-fade-up">What we do</span>
+          <span className="section-label animate-fade-up">Disciplines & Capabilities</span>
           <h1 className={`t-h1 ${styles.heroTitle} animate-fade-up animate-fade-up-delay-1`}>
             Design. Development.<br />
-            Digital experiences built to perform.
+            <em className={styles.heroItalic}>Built to perform.</em>
           </h1>
           <p className={`t-body-lg ${styles.heroSub} animate-fade-up animate-fade-up-delay-2`}>
-            We don't spread across every digital service. We focus on three disciplines
-            and deliver at a level that generic agencies can't match.
+            We don't dilute our focus across a hundred shallow services. We specialize in three interconnected
+            disciplines and deliver at a standard that generic agencies simply cannot match.
           </p>
         </div>
       </section>
 
-      {/* ─── SERVICES ─── */}
+      {/* ─── 3 PRIMARY SERVICES ─── */}
       {services.map((service, index) => (
         <section
           key={service.id}
@@ -139,19 +135,22 @@ export default function ServicesPage() {
           <div className="container">
             <div className={styles.serviceGrid}>
               <div className={styles.serviceLeft}>
-                <div className={styles.serviceNum}>{service.num}</div>
-                <h2 className={`t-h2 reveal`}>{service.title}</h2>
+                <div className={styles.serviceNum}>{service.num} // SERVICE</div>
+                <h2 className="t-h2 reveal">{service.title}</h2>
                 <p className={`t-body-lg ${styles.serviceTagline} reveal reveal-delay-1`}>
                   {service.tagline}
                 </p>
                 <p className={`t-body ${styles.serviceDesc} reveal reveal-delay-2`}>
                   {service.description}
                 </p>
-                <Link href="/contact" className={`btn btn--primary ${styles.serviceBtn} reveal reveal-delay-3`}>
-                  Start a Project →
-                </Link>
+                <div className="reveal reveal-delay-3" style={{ marginTop: '0.75rem' }}>
+                  <Link href="/contact" className="btn btn--primary">
+                    Inquire About {service.title} →
+                  </Link>
+                </div>
               </div>
               <div className={`${styles.serviceRight} reveal reveal-delay-1`}>
+                <h3 className={styles.deliverablesHeading}>Included Deliverables</h3>
                 <div className={styles.serviceItemsList}>
                   {service.items.map((item) => (
                     <div key={item} className={styles.serviceItem}>
@@ -166,49 +165,61 @@ export default function ServicesPage() {
         </section>
       ))}
 
-      {/* ─── FOCUS AREAS ─── */}
+      {/* ─── TECH STACK MATRIX (DARK EDITORIAL CANVAS) ─── */}
       <section className="section section--dark">
         <div className="container">
-          <div className={styles.focusHeader}>
-            <span className="section-label section-label--dark">Every project</span>
-            <h2 className="t-h2" style={{ maxWidth: '540px' }}>
-              What every NYX project focuses on.
+          <div className={styles.techHeader}>
+            <span className="section-label section-label--dark">Engineered For Scale</span>
+            <h2 className="t-h2" style={{ maxWidth: '640px' }}>
+              The modern production stack behind our builds.
             </h2>
+            <p className="t-body-lg text-muted" style={{ maxWidth: '580px', marginTop: '0.75rem' }}>
+              We carefully curate enterprise-grade tooling that delivers unparalleled speed, accessibility, and reliability.
+            </p>
           </div>
-          <div className={styles.focusGrid}>
-            {focusAreas.map((area, i) => (
-              <div key={area.label} className={`${styles.focusCard} reveal reveal-delay-${(i % 3) + 1}`}>
-                <div className={styles.focusIcon}>{area.icon}</div>
-                <h3 className={`t-h4 ${styles.focusLabel}`}>{area.label}</h3>
-                <p className={`t-small ${styles.focusDesc}`}>{area.desc}</p>
+
+          <div className={styles.techGrid}>
+            {techStack.map((tech) => (
+              <div key={tech.name} className={styles.techCard}>
+                <span className={styles.techDot} />
+                <h3 className={styles.techName}>{tech.name}</h3>
+                <p className={styles.techRole}>{tech.role}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ─── PROCESS ─── */}
-      <section className="section section--off">
+      {/* ─── COMPARISON MATRIX ─── */}
+      <section className="section section--light">
         <div className="container">
-          <div className={styles.processHeader}>
-            <span className="section-label">Process</span>
-            <h2 className="t-h2">How every project runs.</h2>
+          <div className={styles.compHeader}>
+            <span className="section-label">The Studio Advantage</span>
+            <h2 className="t-h2">Why clients choose NYX.</h2>
           </div>
-          <div className={styles.processTrack}>
-            {processSteps.map((s, i) => (
-              <div key={s.step} className={`${styles.processNode} reveal reveal-delay-${(i % 4) + 1}`}>
-                <div className={styles.processNodeNum}>{s.step}</div>
-                {i < processSteps.length - 1 && (
-                  <div className={styles.processNodeArrow}>→</div>
-                )}
-                <div className={styles.processNodeLabel}>{s.label}</div>
-              </div>
-            ))}
-          </div>
-          <div className={`${styles.processCta} reveal`}>
-            <Link href="/process" className="btn btn--outline">
-              See Full Process →
-            </Link>
+
+          <div className={styles.tableWrapper}>
+            <table className={styles.compTable}>
+              <thead>
+                <tr>
+                  <th className={styles.thFeature}>Dimension</th>
+                  <th className={styles.thGeneric}>Generic Agencies</th>
+                  <th className={styles.thNyx}>NYX Studio</th>
+                </tr>
+              </thead>
+              <tbody>
+                {comparisons.map((row) => (
+                  <tr key={row.feature}>
+                    <td className={styles.tdFeature}>{row.feature}</td>
+                    <td className={styles.tdGeneric}>{row.generic}</td>
+                    <td className={styles.tdNyx}>
+                      <span className={styles.checkBadge}>✓</span>
+                      <span>{row.nyx}</span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       </section>
@@ -217,17 +228,15 @@ export default function ServicesPage() {
       <section className={`section section--ink ${styles.bottomCta}`}>
         <div className="container--narrow">
           <div className={styles.bottomCtaInner}>
-            <h2 className={`t-h2 reveal`}>Tell us what you're building.</h2>
-            <p className={`t-body-lg reveal reveal-delay-1`} style={{ color: 'rgba(255,255,255,0.65)', maxWidth: '480px' }}>
-              Whether it's a new website, a redesign, or a complex UI/UX challenge —
-              we'd love to hear about it.
+            <span className="section-label section-label--neutral">Get Started</span>
+            <h2 className="t-h2 reveal">Tell us what you're building.</h2>
+            <p className="t-body-lg reveal reveal-delay-1" style={{ color: 'rgba(255,255,255,0.7)', maxWidth: '500px' }}>
+              Whether it's a complete new platform, a bespoke design system, or a technical redesign —
+              we'd love to examine your objectives.
             </p>
-            <div className={`reveal reveal-delay-2`}>
+            <div className="reveal reveal-delay-2">
               <Link href="/contact" className="btn btn--primary btn--lg">
-                Start a Project
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                  <path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
+                Start a Project →
               </Link>
             </div>
           </div>
