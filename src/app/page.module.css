@@ -413,6 +413,7 @@
   background: #121212;
   position: relative;
   overflow: hidden;
+  padding-bottom: 3.5rem;
 }
 
 .workGrid {
@@ -586,7 +587,7 @@
 /* ─── WHY NYX ─── */
 
 .whyHeader {
-  margin-bottom: 2.5rem;
+  margin-bottom: 3.5rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -595,9 +596,11 @@
 .whyFullStrip {
   width: 100%;
   background: var(--white, #ffffff);
-  padding: 2rem 0;
+  padding: 2.25rem 0;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.18);
   position: relative;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  margin-top: 3rem;
 }
 
 .whyGrid {
