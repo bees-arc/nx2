@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import StudioCta from '@/components/ui/StudioCta';
 import styles from './page.module.css';
 
 export const metadata: Metadata = {
@@ -41,6 +42,27 @@ const creed = [
   },
 ];
 
+const techPhilosophy = [
+  {
+    icon: '⚡',
+    title: 'Edge Caching vs Database Bloat',
+    desc: 'Traditional WordPress and PHP setups execute expensive database queries on every page hit. We deploy static React Server Components cached at the edge across 300+ global data centers, loading pages in under 200ms.',
+    tags: ['Sub-50ms TTFB', 'Vercel Edge', 'Zero DB Lag'],
+  },
+  {
+    icon: '🔒',
+    title: 'Total Code Ownership vs Vendor Lock-In',
+    desc: 'Site builders like Webflow and Wix hold your data and markup hostage. If you leave, you rebuild from zero. With NYX, you receive a full production Next.js GitHub repository that your team owns outright forever.',
+    tags: ['100% IP Handover', 'Clean Git History', 'Zero Platform Tax'],
+  },
+  {
+    icon: '🎯',
+    title: 'Bespoke CSS Modules vs Fragile Plugins',
+    desc: 'Generic agency websites rely on 40+ third-party WordPress plugins that clash and break with every update. We engineer using scoped Vanilla CSS Modules and TypeScript, creating clean, indestructible platforms.',
+    tags: ['Zero Runtime Bloat', 'Strict Type-Safety', 'WCAG AA Calibrated'],
+  },
+];
+
 const teamMembers = [
   {
     name: 'Alex Ratnayake',
@@ -65,6 +87,29 @@ const teamMembers = [
     initials: 'DP',
     focus: 'Figma Systems • Design Tokens • Micro-Interactions • WCAG AA',
     color: '#3B82F6',
+  },
+];
+
+const globalPresence = [
+  {
+    region: 'North America',
+    cities: 'San Francisco • New York',
+    detail: 'Synchronized async sprint reviews, Pacific & Eastern timezone overlap for kickoff and sign-offs.',
+  },
+  {
+    region: 'United Kingdom & Europe',
+    cities: 'London • Berlin • Zurich',
+    detail: 'Dedicated European business hour availability with real-time Slack/Discord communication.',
+  },
+  {
+    region: 'Asia Pacific',
+    cities: 'Singapore • Sydney • Tokyo',
+    detail: 'Rapid same-day turnaround cycles taking advantage of strategic regional timezone differences.',
+  },
+  {
+    region: 'Studio HQ',
+    cities: 'Colombo (UTC+5:30)',
+    detail: 'Our central engineering and design atelier where every sprint is orchestrated and crafted.',
   },
 ];
 
@@ -138,6 +183,34 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* ─── TECHNICAL PHILOSOPHY: WHY WE REJECT BUILDERS ─── */}
+      <section className={styles.techPhilosophySection}>
+        <div className="container">
+          <div className={styles.techPhilHeader}>
+            <span className="section-label">Engineering Integrity</span>
+            <h2 className="t-h2">Why we reject drag-and-drop website builders.</h2>
+            <p className="t-body-lg text-muted" style={{ marginTop: '0.75rem' }}>
+              We build custom Next.js software because serious commercial brands cannot afford sluggish load times, vendor lock-in, and fragile plugin architectures.
+            </p>
+          </div>
+
+          <div className={styles.techPhilGrid}>
+            {techPhilosophy.map((item) => (
+              <div key={item.title} className={styles.techPhilCard}>
+                <span className={styles.techPhilIcon}>{item.icon}</span>
+                <h3 className={styles.techPhilTitle}>{item.title}</h3>
+                <p className={styles.techPhilDesc}>{item.desc}</p>
+                <div className={styles.techPhilTags}>
+                  {item.tags.map((t) => (
+                    <span key={t} className={styles.techPhilTag}>{t}</span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ─── TECHNICAL & CULTURAL CREED ─── */}
       <section className="section section--light">
         <div className="container">
@@ -192,25 +265,40 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ─── BOTTOM CTA ─── */}
-      <section className="section section--off">
-        <div className="container--narrow">
-          <div className={styles.bottomCta}>
-            <span className="section-label">Let's Connect</span>
-            <h2 className="t-h2 reveal">
-              Ready to collaborate with a focused studio?
-            </h2>
-            <p className="t-body-lg text-muted reveal reveal-delay-1" style={{ maxWidth: '520px' }}>
-              We're always excited to hear from founders and businesses who take their digital presence seriously.
+      {/* ─── GLOBAL FOOTPRINT & COLLABORATION ─── */}
+      <section className={styles.globalSection}>
+        <div className="container">
+          <div className={styles.globalHeader}>
+            <span className="section-label section-label--dark">Global Reach</span>
+            <h2 className="t-h2" style={{ color: '#FFFFFF' }}>Engineering for clients across 4 continents.</h2>
+            <p className="t-body-lg" style={{ color: '#A0A09A', maxWidth: '580px', marginTop: '0.75rem' }}>
+              We have refined asynchronous collaboration into an art form. Daily video walkthroughs, shared staging branches, and direct founder channels.
             </p>
-            <div className="reveal reveal-delay-2">
-              <Link href="/contact" className="btn btn--primary btn--lg">
-                Start a Conversation →
-              </Link>
-            </div>
+          </div>
+
+          <div className={styles.globalGrid}>
+            {globalPresence.map((loc) => (
+              <div key={loc.region} className={styles.globalCard}>
+                <span className={styles.globalRegion}>{loc.region}</span>
+                <h3 className={styles.globalCities}>{loc.cities}</h3>
+                <p className={styles.globalDetail}>{loc.detail}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
+
+      {/* ─── REPLACED HIGH-IMPACT STUDIO CTA (ELIMINATING EMPTY SECTION) ─── */}
+      <StudioCta
+        label="Let's Connect"
+        title="Ready to collaborate with a focused studio?"
+        subtitle="We partner with a limited number of clients per sprint to guarantee undivided attention and precision engineering. Let's discuss your roadmap."
+        primaryBtnText="Start a Conversation"
+        primaryBtnHref="/contact"
+        secondaryBtnText="Explore Our Work"
+        secondaryBtnHref="/work"
+        availabilityText="Booking 2-Week Sprints — Next Availability Open"
+      />
     </>
   );
 }
