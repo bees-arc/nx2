@@ -61,7 +61,7 @@ export default function Footer() {
             <Link href="/" className={styles.logo}>
               <Image
                 src="/images/logo-dark.png"
-                alt="NYX"
+                alt="NYX-SaaS"
                 width={120}
                 height={49}
                 className={styles.logoImg}
@@ -119,8 +119,8 @@ export default function Footer() {
             <p className={styles.navGroupLabel}>Get in Touch</p>
             <ul className={styles.navList}>
               <li>
-                <a href="mailto:hello@nyxstudio.co" className={styles.navLink}>
-                  hello@nyxstudio.co
+                <a href="mailto:hello@nyx-saas.com" className={styles.navLink}>
+                  hello@nyx-saas.com
                 </a>
               </li>
               <li className={styles.ctaWrap}>
@@ -134,7 +134,7 @@ export default function Footer() {
 
         <div className={styles.bottom}>
           <p className={styles.copyright}>
-            © {year} NYX. All rights reserved.
+            © {year} NYX-SaaS. All rights reserved.
           </p>
           <div className={styles.legal}>
             <Link href="/privacy" className={styles.legalLink}>Privacy Policy</Link>

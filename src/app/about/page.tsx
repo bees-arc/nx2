@@ -4,9 +4,9 @@ import StudioCta from '@/components/ui/StudioCta';
 import styles from './page.module.css';
 
 export const metadata: Metadata = {
-  title: 'About — The NYX Philosophy & Studio Manifesto | NYX',
+  title: 'About — The NYX-SaaS Philosophy & Manifesto | NYX-SaaS',
   description:
-    'Learn why NYX exists. We are an independent digital product and Next.js engineering studio delivering bespoke web experiences that drive commercial momentum.',
+    'Learn why NYX-SaaS exists. We are an independent digital product and Next.js engineering studio delivering bespoke web experiences that drive commercial momentum.',
 };
 
 const creed = [
@@ -44,19 +44,19 @@ const creed = [
 
 const techPhilosophy = [
   {
-    icon: '⚡',
+    tag: 'Architecture // 01',
     title: 'Edge Caching vs Database Bloat',
     desc: 'Traditional WordPress and PHP setups execute expensive database queries on every page hit. We deploy static React Server Components cached at the edge across 300+ global data centers, loading pages in under 200ms.',
     tags: ['Sub-50ms TTFB', 'Vercel Edge', 'Zero DB Lag'],
   },
   {
-    icon: '🔒',
+    tag: 'Architecture // 02',
     title: 'Total Code Ownership vs Vendor Lock-In',
-    desc: 'Site builders like Webflow and Wix hold your data and markup hostage. If you leave, you rebuild from zero. With NYX, you receive a full production Next.js GitHub repository that your team owns outright forever.',
+    desc: 'Site builders like Webflow and Wix hold your data and markup hostage. If you leave, you rebuild from zero. With NYX-SaaS, you receive a full production Next.js GitHub repository that your team owns outright forever.',
     tags: ['100% IP Handover', 'Clean Git History', 'Zero Platform Tax'],
   },
   {
-    icon: '🎯',
+    tag: 'Architecture // 03',
     title: 'Bespoke CSS Modules vs Fragile Plugins',
     desc: 'Generic agency websites rely on 40+ third-party WordPress plugins that clash and break with every update. We engineer using scoped Vanilla CSS Modules and TypeScript, creating clean, indestructible platforms.',
     tags: ['Zero Runtime Bloat', 'Strict Type-Safety', 'WCAG AA Calibrated'],
@@ -133,7 +133,7 @@ export default function AboutPage() {
             <em className={styles.heroItalic}>Not passing trends.</em>
           </h1>
           <p className={`t-body-lg ${styles.heroSub} animate-fade-up animate-fade-up-delay-2`}>
-            NYX is an independent digital product and Next.js engineering studio based in Colombo,
+            NYX-SaaS is an independent digital product and Next.js engineering studio based in Colombo,
             deploying high-performance web platforms for ambitious clients across the US, UK, Australia, and beyond.
           </p>
 
@@ -169,14 +169,14 @@ export default function AboutPage() {
                 and fail to communicate what the business actually does. Visitors leave before the first fold renders.
               </p>
               <p className={styles.bodyPara}>
-                We founded NYX to do the opposite. We view websites as commercial software — instruments designed
+                We founded NYX-SaaS to do the opposite. We view websites as commercial software — instruments designed
                 to establish undeniable market authority, communicate value in seconds, and drive qualified revenue.
               </p>
               <div className={styles.quoteBox}>
                 <p className={styles.quoteText}>
                   "Design is not how it looks. It's how clearly it communicates and how reliably it performs."
                 </p>
-                <span className={styles.quoteAuthor}>— NYX Studio Philosophy</span>
+                <span className={styles.quoteAuthor}>— NYX-SaaS Philosophy</span>
               </div>
             </div>
           </div>
@@ -197,7 +197,7 @@ export default function AboutPage() {
           <div className={styles.techPhilGrid}>
             {techPhilosophy.map((item) => (
               <div key={item.title} className={styles.techPhilCard}>
-                <span className={styles.techPhilIcon}>{item.icon}</span>
+                <span className={styles.techPhilTagHeader}>{item.tag}</span>
                 <h3 className={styles.techPhilTitle}>{item.title}</h3>
                 <p className={styles.techPhilDesc}>{item.desc}</p>
                 <div className={styles.techPhilTags}>
@@ -240,7 +240,7 @@ export default function AboutPage() {
             <span className="section-label section-label--dark">Founding Team</span>
             <h2 className="t-h2">The craftsmen behind the code.</h2>
             <p className="t-body-lg text-muted" style={{ maxWidth: '560px', marginTop: '0.75rem' }}>
-              When you partner with NYX, you work directly with experienced practitioners — not junior account executives.
+              When you partner with NYX-SaaS, you work directly with experienced practitioners — not junior account executives.
             </p>
           </div>
 

@@ -153,6 +153,15 @@
   color: #8A8A84;
 }
 
+.guaranteeDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--nyx-blue, #2563EB);
+  display: inline-block;
+  flex-shrink: 0;
+}
+
 /* Success Box */
 .successBox {
   background: #141412;

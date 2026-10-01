@@ -5,7 +5,7 @@ import StudioCta from '@/components/ui/StudioCta';
 import styles from './page.module.css';
 
 export const metadata: Metadata = {
-  title: 'Work — Selected Projects & Case Studies | NYX Studio',
+  title: 'Work — Selected Projects & Case Studies | NYX-SaaS',
   description:
     'Explore our collection of 17 digital products, Next.js web platforms, and UI/UX design systems engineered for high-growth businesses in 2-week sprints.',
 };
@@ -19,22 +19,22 @@ const studioMetrics = [
 
 const industries = [
   {
-    icon: '⚡',
+    tag: 'Sector // 01',
     title: 'FinTech & Web3 Platforms',
     desc: 'Ultra-fast interfaces where millisecond latency and cryptographic security establish instant customer confidence.',
   },
   {
-    icon: '🏛️',
+    tag: 'Sector // 02',
     title: 'Architecture & Spatial Design',
     desc: 'Editorial layouts, high-resolution media handling, and fluid responsive grids designed for prestigious studios.',
   },
   {
-    icon: '📊',
+    tag: 'Sector // 03',
     title: 'Enterprise SaaS & Cloud Tools',
     desc: 'Complex dashboard workflows, multi-breakpoint UI kits, and friction-free product onboarding journeys.',
   },
   {
-    icon: '⚖️',
+    tag: 'Sector // 04',
     title: 'Legal, Advisory & Corporate',
     desc: 'Authoritative digital presences structured for how corporate clients evaluate advisory expertise and trust.',
   },
@@ -43,14 +43,14 @@ const industries = [
 const testimonials = [
   {
     quote:
-      '“NYX delivered in 14 days what our previous agency failed to deliver in 5 months. Our site loads instantly, our Figma design system is modular, and our inbound demo requests jumped 180% within the first month.”',
+      '“NYX-SaaS delivered in 14 days what our previous agency failed to deliver in 5 months. Our site loads instantly, our Figma design system is modular, and our inbound demo requests jumped 180% within the first month.”',
     name: 'Marcus Vance',
     role: 'Co-Founder & CEO',
     company: 'Novus FinTech Systems',
   },
   {
     quote:
-      '“The clarity and velocity of NYX’s 2-week sprint were unlike anything we’ve experienced. No junior account managers, no meeting theater — just pure craftsmanship from start to finish.”',
+      '“The clarity and velocity of NYX-SaaS’s 2-week sprint were unlike anything we’ve experienced. No junior account managers, no meeting theater — just pure craftsmanship from start to finish.”',
     name: 'Elena Rostova',
     role: 'Principal Architect',
     company: 'Kurogane Sound Systems',
@@ -114,7 +114,7 @@ export default function WorkPage() {
           <div className={styles.industryGrid}>
             {industries.map((ind) => (
               <div key={ind.title} className={styles.industryCard}>
-                <span className={styles.industryIcon}>{ind.icon}</span>
+                <span className={styles.industryTag}>{ind.tag}</span>
                 <h3 className={styles.industryTitle}>{ind.title}</h3>
                 <p className={styles.industryDesc}>{ind.desc}</p>
               </div>

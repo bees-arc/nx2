@@ -5,9 +5,9 @@ import StudioCta from '@/components/ui/StudioCta';
 import styles from './page.module.css';
 
 export const metadata: Metadata = {
-  title: 'Services & Pricing — Website Design, Next.js Engineering & UI/UX | NYX Studio',
+  title: 'Services — Website Design, Next.js Engineering & UI/UX | NYX-SaaS',
   description:
-    'Comprehensive overview of NYX Studio capabilities: Website Design, Next.js Development, and UI/UX Design Systems delivered in synchronized 2-week sprints.',
+    'Comprehensive overview of NYX-SaaS capabilities: Website Design, Next.js Development, and UI/UX Design Systems delivered in synchronized 2-week sprints.',
 };
 
 interface ServiceDetail {
@@ -154,69 +154,6 @@ const detailedServices: ServiceDetail[] = [
   },
 ];
 
-const sprintPackages = [
-  {
-    tier: 'Tier 01',
-    name: 'The 2-Week Launch Sprint',
-    duration: '14 Calendar Days',
-    price: '$7,500',
-    period: 'fixed investment',
-    desc: 'Designed for seed-funded startups, emerging brands, and businesses needing a rapid, high-impact digital presence.',
-    featured: false,
-    features: [
-      'Strict 2-Week Synchronized Delivery Window',
-      'Up to 5 Custom Bespoke Next.js Pages',
-      'Complete Responsive Mobile & Desktop Layouts',
-      'Bespoke Figma Design System & Brand Direction',
-      'Interactive Contact & Lead Generation Capture',
-      '99+ Google Lighthouse PageSpeed Guarantee',
-      'Full GitHub Repository & IP Ownership',
-      '30-Day Post-Launch Technical Support Window',
-    ],
-    ctaText: 'Book Launch Sprint',
-  },
-  {
-    tier: 'Tier 02 // Recommended',
-    name: 'The Flagship Digital Platform',
-    duration: '2 to 3 Weeks',
-    price: '$14,000',
-    period: 'fixed investment',
-    desc: 'For established mid-market leaders and high-growth brands requiring advanced CMS workflows, custom animations, and deep conversion funnels.',
-    featured: true,
-    features: [
-      'Full 14 to 21 Day Multi-Stage Sprint Schedule',
-      'Up to 10 Bespoke Pages & Complex Sub-Templates',
-      'Headless CMS Integration (Sanity / Supabase / Payload)',
-      'Advanced Framer Motion Kinetic Micro-Interactions',
-      'Dynamic Blog / Case Studies / Product Funnel Schemas',
-      'Custom API & CRM Lead Routing Webhooks',
-      'Cross-Browser & Multi-Device Matrix QA',
-      'DNS Migration, Edge Caching & 60-Day Support Warranty',
-    ],
-    ctaText: 'Book Flagship Sprint',
-  },
-  {
-    tier: 'Tier 03',
-    name: 'Continuous Product Velocity',
-    duration: 'Monthly Retainer',
-    price: '$5,500',
-    period: 'per month',
-    desc: 'For scaling tech teams that need dedicated bi-weekly sprint capacity, feature iteration, and design system stewardship without hiring full-time staff.',
-    featured: false,
-    features: [
-      'Guaranteed Dedicated Senior Engineering Capacity',
-      'Bi-Weekly Sprint Releases & Staging Previews',
-      'Continuous Conversion Rate Optimization (CRO)',
-      'Design System Expansion & New Component Additions',
-      'Ongoing Security Updates & Dependency Audits',
-      'Direct Private Slack Channel with Studio Founders',
-      'Same-Day Priority Bug Fix Turnaround',
-      'Cancel or Pause With 30-Day Notice',
-    ],
-    ctaText: 'Inquire About Retainer',
-  },
-];
-
 const techStack = [
   { name: 'Next.js 15', role: 'Full-Stack React Framework' },
   { name: 'TypeScript', role: 'Production Type Safety' },
@@ -311,7 +248,6 @@ export default function ServicesPage() {
             <a href="#design" className={styles.quickNavLink}>01. Website Design</a>
             <a href="#development" className={styles.quickNavLink}>02. Next.js Development</a>
             <a href="#uiux" className={styles.quickNavLink}>03. UI/UX Systems</a>
-            <a href="#pricing" className={styles.quickNavLink}>Sprint Packages & Pricing</a>
             <a href="#stack" className={styles.quickNavLink}>Production Tech Stack</a>
             <a href="#faq" className={styles.quickNavLink}>Engineering FAQ</a>
           </div>
@@ -397,67 +333,6 @@ export default function ServicesPage() {
         </section>
       ))}
 
-      {/* ─── SPRINT PRICING & SCOPES (TRANSPARENT ARCHITECTURE) ─── */}
-      <section className={styles.pricingSection} id="pricing">
-        <div className="container">
-          <div className={styles.pricingHeader}>
-            <span className="section-label section-label--dark">Commercial Clarity</span>
-            <h2 className="t-h2" style={{ color: '#FFFFFF', maxWidth: '640px' }}>
-              Transparent sprint pricing.<br />
-              <span style={{ color: '#60A5FA' }}>Zero hidden agency markups.</span>
-            </h2>
-            <p className="t-body-lg" style={{ color: '#A0A09A', maxWidth: '580px', marginTop: '0.75rem' }}>
-              We eliminate endless retainer bloat. Every project operates within a fixed-scope, fixed-price sprint window with guaranteed on-time delivery.
-            </p>
-          </div>
-
-          <div className={styles.pricingGrid}>
-            {sprintPackages.map((pkg) => (
-              <div
-                key={pkg.name}
-                className={`${styles.pricingCard} ${pkg.featured ? styles.pricingCardFeatured : ''}`}
-              >
-                {pkg.featured && (
-                  <div className={styles.featuredPill}>Most Popular</div>
-                )}
-                <div className={styles.pricingTop}>
-                  <span className={styles.pricingTier}>{pkg.tier}</span>
-                  <h3 className={styles.pricingName}>{pkg.name}</h3>
-                  <div className={styles.pricingDuration}>
-                    <span className={styles.pricingDot} />
-                    <span>{pkg.duration}</span>
-                  </div>
-                </div>
-
-                <div className={styles.pricingCostRow}>
-                  <span className={styles.pricingCost}>{pkg.price}</span>
-                  <span className={styles.pricingPeriod}>/ {pkg.period}</span>
-                </div>
-
-                <p className={styles.pricingDesc}>{pkg.desc}</p>
-
-                <div className={styles.pricingFeaturesList}>
-                  {pkg.features.map((f) => (
-                    <div key={f} className={styles.pricingFeature}>
-                      <span className={styles.pricingFeatureCheck}>✓</span>
-                      <span>{f}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <Link
-                  href="/contact"
-                  className={`btn ${pkg.featured ? 'btn--primary' : 'btn--outline-white'}`}
-                  style={{ width: '100%', justifyContent: 'center' }}
-                >
-                  {pkg.ctaText} →
-                </Link>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ─── TECH STACK MATRIX (DARK EDITORIAL CANVAS) ─── */}
       <section className="section section--dark" id="stack">
         <div className="container">
@@ -488,7 +363,7 @@ export default function ServicesPage() {
         <div className="container">
           <div className={styles.compHeader}>
             <span className="section-label">The Studio Advantage</span>
-            <h2 className="t-h2">Why clients choose NYX over generic agencies.</h2>
+            <h2 className="t-h2">Why clients choose NYX-SaaS over generic agencies.</h2>
           </div>
 
           <div className={styles.tableWrapper}>
@@ -497,7 +372,7 @@ export default function ServicesPage() {
                 <tr>
                   <th className={styles.thFeature}>Dimension</th>
                   <th className={styles.thGeneric}>Generic Agencies</th>
-                  <th className={styles.thNyx}>NYX Studio</th>
+                  <th className={styles.thNyx}>NYX-SaaS</th>
                 </tr>
               </thead>
               <tbody>

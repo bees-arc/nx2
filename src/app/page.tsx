@@ -63,6 +63,7 @@ export default function Home() {
       {/* ─── BOOKSHELF GALLERY SECTION ─── */}
       <section className={styles.shelfSection}>
         <HoverExpandGallery projects={featured} />
+        
       </section>
 
 

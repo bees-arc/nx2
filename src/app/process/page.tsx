@@ -1,11 +1,12 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import StudioCta from '@/components/ui/StudioCta';
 import styles from './page.module.css';
 
 export const metadata: Metadata = {
-  title: 'Process — The 2-Week Synchronized Sprint | NYX Studio',
+  title: 'Process — The 2-Week Synchronized Sprint | NYX-SaaS',
   description:
-    'Experience our battle-tested 2-week sprint cycle. How NYX bridges strategic intelligence, bespoke design systems, and Next.js engineering into production platforms in 14 days.',
+    'Experience our battle-tested 2-week sprint cycle. How NYX-SaaS bridges strategic intelligence, bespoke design systems, and Next.js engineering into production platforms in 14 days.',
 };
 
 const sprintPhases = [
@@ -280,26 +281,17 @@ export default function ProcessPage() {
         </div>
       </section>
 
-      {/* ─── BOTTOM CTA ─── */}
-      <section className="section section--off">
-        <div className="container--narrow">
-          <div className={styles.bottomCta}>
-            <span className="section-label">Sprint Availability</span>
-            <h2 className="t-h2 reveal">
-              Ready to schedule your 2-week sprint?
-            </h2>
-            <p className="t-body-lg text-muted reveal reveal-delay-1" style={{ maxWidth: '540px' }}>
-              We book sprints 2 weeks in advance to ensure dedicated, unbroken attention.
-              Reserve your production window today.
-            </p>
-            <div className="reveal reveal-delay-2">
-              <Link href="/contact" className="btn btn--primary btn--lg">
-                Book a Sprint →
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* ─── STUDIO CTA ─── */}
+      <StudioCta
+        label="Sprint Availability"
+        title="Ready to schedule your 2-week synchronized sprint?"
+        subtitle="We book sprints 2 weeks in advance to ensure dedicated, unbroken senior engineering focus. Reserve your production window today."
+        primaryBtnText="Book a Sprint"
+        primaryBtnHref="/contact"
+        secondaryBtnText="Explore Our Work"
+        secondaryBtnHref="/work"
+        availabilityText="Booking 2-Week Sprints — Next Availability Open"
+      />
     </>
   );
 }

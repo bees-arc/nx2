@@ -81,7 +81,7 @@ export default function StudioCta({
             <div className={styles.logoCard}>
               <Image
                 src="/images/favicon.jpeg"
-                alt="NYX Studio Emblem"
+                alt="NYX-SaaS Emblem"
                 width={380}
                 height={380}
                 className={styles.logoImg}
@@ -89,7 +89,7 @@ export default function StudioCta({
               />
               <div className={styles.logoBadge}>
                 <span className={styles.logoBadgeDot} />
-                <span className={styles.logoBadgeText}>NYX STUDIO // 2-WEEK SPRINT FRAMEWORK</span>
+                <span className={styles.logoBadgeText}>NYX-SAAS // 2-WEEK SPRINT FRAMEWORK</span>
               </div>
             </div>
           </div>

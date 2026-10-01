@@ -39,10 +39,10 @@ export default function Header() {
     <>
       <header className={`${styles.header} ${scrolled ? styles.scrolled : ''} ${isDarkTheme ? styles.darkTheme : styles.lightTheme}`}>
         <div className={styles.inner}>
-          <Link href="/" className={styles.logo} aria-label="NYX – Home">
+          <Link href="/" className={styles.logo} aria-label="NYX-SaaS – Home">
             <Image
               src="/images/logo-dark.png"
-              alt="NYX"
+              alt="NYX-SaaS"
               width={116}
               height={47}
               className={`${styles.logoImg} ${styles.logoDark}`}
@@ -50,7 +50,7 @@ export default function Header() {
             />
             <Image
               src="/images/logo-light.png"
-              alt="NYX"
+              alt="NYX-SaaS"
               width={116}
               height={47}
               className={`${styles.logoImg} ${styles.logoLight}`}
@@ -118,7 +118,7 @@ export default function Header() {
         </nav>
 
         <div className={styles.mobileMenuFooter}>
-          <p className="t-small text-muted">hello@nyxstudio.co</p>
+          <p className="t-small text-muted">hello@nyx-saas.com</p>
         </div>
       </div>
 

@@ -173,8 +173,12 @@
   box-shadow: 0 14px 32px rgba(0, 0, 0, 0.06);
 }
 
-.techPhilIcon {
-  font-size: 1.5rem;
+.techPhilTagHeader {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--nyx-blue);
+  text-transform: uppercase;
   margin-bottom: 0.25rem;
 }
 

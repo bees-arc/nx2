@@ -14,11 +14,11 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: {
-    default: "NYX — Digital Experiences Built to Perform",
-    template: "%s | NYX",
+    default: "NYX-SaaS — Digital Experiences Built to Perform",
+    template: "%s | NYX-SaaS",
   },
   description:
-    "NYX is a digital design studio building websites and UI/UX experiences that turn attention into action. Website Design, Development & UI/UX.",
+    "NYX-SaaS is a digital product and Next.js engineering studio building high-performance web applications and UI/UX experiences that drive commercial momentum.",
   icons: {
     icon: [
       { url: '/images/favicon.png?v=3', type: 'image/png' },
@@ -27,21 +27,21 @@ export const metadata: Metadata = {
     shortcut: '/images/favicon.png?v=3',
     apple: '/images/favicon.png?v=3',
   },
-  keywords: ["website design", "web development", "UI/UX design", "digital agency", "NYX"],
-  authors: [{ name: "NYX Studio" }],
-  creator: "NYX Studio",
+  keywords: ["website design", "web development", "UI/UX design", "digital agency", "NYX-SaaS", "Next.js 15"],
+  authors: [{ name: "NYX-SaaS" }],
+  creator: "NYX-SaaS",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://nyxstudio.co",
-    siteName: "NYX",
-    title: "NYX — Digital Experiences Built to Perform",
+    url: "https://nyx-saas.com",
+    siteName: "NYX-SaaS",
+    title: "NYX-SaaS — Digital Experiences Built to Perform",
     description:
       "We build digital experiences that turn attention into action. Website Design, Development & UI/UX.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "NYX — Digital Experiences Built to Perform",
+    title: "NYX-SaaS — Digital Experiences Built to Perform",
     description: "We build digital experiences that turn attention into action.",
   },
 };

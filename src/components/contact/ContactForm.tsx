@@ -236,15 +236,15 @@ export default function ContactForm() {
 
         <div className={styles.submitGuarantees}>
           <div className={styles.guaranteeItem}>
-            <span>🔒</span>
+            <span className={styles.guaranteeDot} />
             <span>NDA protected</span>
           </div>
           <div className={styles.guaranteeItem}>
-            <span>⚡</span>
+            <span className={styles.guaranteeDot} />
             <span>24h guaranteed response</span>
           </div>
           <div className={styles.guaranteeItem}>
-            <span>🤝</span>
+            <span className={styles.guaranteeDot} />
             <span>Zero obligation consultation</span>
           </div>
         </div>
