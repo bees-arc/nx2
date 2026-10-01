@@ -12,23 +12,17 @@ interface GalleryItem {
 }
 
 const defaultItems: GalleryItem[] = [
-  { id: 1, label: "Velvet ® Dreams Studio", year: "2024", image: "/images/skiper35/imgp3.png" },
-  { id: 2, label: "Neon Pulse ® Agency", year: "2024", image: "/images/skiper35/illstration15.png" },
-  { id: 3, label: "Midnight Canvas", year: "2024", image: "/images/skiper35/img32.png" },
-  { id: 4, label: "Echo Digital Lab", year: "2024", image: "/images/skiper35/img27.png" },
-  { id: 5, label: "Skiper Creative ® Co ", year: "2023", image: "/images/skiper35/img5.webp" },
-  { id: 6, label: "Cosmic Brew Studios", year: "2023—2024", image: "/images/skiper35/illstration12.png" },
-  { id: 7, label: "Horizon Typography", year: "2024", image: "/images/skiper35/illstration13.png" },
-  { id: 8, label: "Waves & ® Motion", year: "2022—2024", image: "/images/skiper35/img8.webp" },
-  { id: 9, label: "Stellar Workshop", year: "2023", image: "/images/skiper35/illstration9.png" },
-  { id: 10, label: "Prism ® Media House", year: "2023", image: "/images/skiper35/img17.png" },
-  { id: 11, label: "Aurora Design Co ™ ", year: "2023", image: "/images/skiper35/illstration5.png" },
-  { id: 12, label: "Flux Interactive", year: "2023", image: "/images/skiper35/img12.png" },
-  { id: 13, label: "Ember Creative Lab ™", year: "2022", image: "/images/skiper35/illstration3.png" },
-  { id: 14, label: "Zenith Brand Studio", year: "2024", image: "/images/skiper35/img15.png" },
-  { id: 15, label: "Quantum Visual Arts", year: "2022—2023", image: "/images/skiper35/img21.png" },
-  { id: 16, label: "Quantum Visual Arts", year: "2022—2023", image: "/images/skiper35/img8.png" },
-  { id: 17, label: "Quantum Visual Arts", year: "2022—2023", image: "/images/skiper35/img1.png" }
+  { id: 1, label: "Aurora Wellness Sanctuary", year: "2024", image: "/images/projects/aurora-spa.jpg" },
+  { id: 2, label: "The Grand Haven Hotel", year: "2024", image: "/images/projects/grand-haven-hotel.svg" },
+  { id: 3, label: "Nexus Medical Center", year: "2024", image: "/images/projects/nexus-medical-center.svg" },
+  { id: 4, label: "Kuro Fine Dining & Lounge", year: "2024", image: "/images/projects/kuro-dining-lounge.svg" },
+  { id: 5, label: "PureSpark Eco Cleaning Co", year: "2024", image: "/images/projects/purespark-cleaning.svg" },
+  { id: 6, label: "Vanguard Athletic Club", year: "2024", image: "/images/projects/vanguard-athletics.svg" },
+  { id: 7, label: "Elysian Luxury Estates", year: "2024", image: "/images/projects/elysian-estates.svg" },
+  { id: 8, label: "Velvet Roast Coffee & Bakery", year: "2024", image: "/images/projects/velvet-roast-cafe.svg" },
+  { id: 9, label: "Radiance Dental Studio", year: "2024", image: "/images/projects/radiance-dental.svg" },
+  { id: 10, label: "Apex Wealth Terminal", year: "2024", image: "/images/projects/apex-fintech.jpg" },
+  { id: 11, label: "Aura Neural AI Platform", year: "2024", image: "/images/projects/aura-neural-ai.jpg" }
 ];
 
 interface HoverExpandGalleryProps {
@@ -36,7 +30,7 @@ interface HoverExpandGalleryProps {
 }
 
 export default function HoverExpandGallery({ projects }: HoverExpandGalleryProps = {}) {
-  const [activeIdx, setActiveIdx] = useState<number>(5); // Cosmic Brew Studios default
+  const [activeIdx, setActiveIdx] = useState<number>(0); // Aurora Wellness Sanctuary default
   const [isMobile, setIsMobile] = useState<boolean>(false);
 
   useEffect(() => {
@@ -111,8 +105,8 @@ export default function HoverExpandGallery({ projects }: HoverExpandGalleryProps
                     onError={(e) => {
                       // Fallback if image still loading
                       const target = e.currentTarget as HTMLImageElement;
-                      if (!target.src.includes('illstration12.png')) {
-                        target.src = '/images/skiper35/illstration12.png';
+                      if (!target.src.includes('aurora-spa.jpg')) {
+                        target.src = '/images/projects/aurora-spa.jpg';
                       }
                     }}
                   />
