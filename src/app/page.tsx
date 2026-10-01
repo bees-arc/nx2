@@ -66,16 +66,22 @@ export default function Home() {
 
 
       {/* ─── WHY NYX: VALUE PROPOSITION ─── */}
-      <section className="section section--dark" style={{ paddingTop: '4rem', paddingBottom: '4rem', paddingLeft: '1.5rem', paddingRight: '1.5rem' }}>
-        <div style={{ maxWidth: '1600px', width: '100%', margin: '0 auto' }}>
-          <div className={styles.whyHeader} style={{ marginBottom: '1.75rem' }}>
+      <section className="section section--dark" style={{ paddingTop: '5.5rem', paddingBottom: '5.5rem', paddingLeft: 0, paddingRight: 0 }}>
+        {/* Title kept at original position, aligned with site container */}
+        <div className="container">
+          <div className={styles.whyHeader}>
             <span className="section-label section-label--dark">Why NYX</span>
-            <h2 className="t-h2" style={{ maxWidth: '720px' }}>
+            <h2 className="t-h2" style={{ maxWidth: '640px' }}>
               Not just another agency.<br />A different way of thinking.
             </h2>
           </div>
+        </div>
 
-          <Skiper60SideNav />
+        {/* Full-width white strip (100% edge-to-edge) */}
+        <div className={styles.whyFullStrip}>
+          <div className="container">
+            <Skiper60SideNav />
+          </div>
         </div>
       </section>
 

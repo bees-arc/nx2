@@ -106,7 +106,7 @@ export default function Skiper60SideNav() {
               className={`${styles.navItem} ${isActive ? styles.navItemActive : ''}`}
               onClick={() => setActiveIdx(index)}
             >
-              {/* Active highlight indicator */}
+              {/* Active indicator bar */}
               {isActive && (
                 <motion.div
                   layoutId="activeSideNav"
@@ -115,18 +115,7 @@ export default function Skiper60SideNav() {
                 />
               )}
 
-              <div className={styles.navIconBox}>
-                <span>{item.icon}</span>
-              </div>
-
-              <div className={styles.navTextGroup}>
-                <span className={styles.navItemTitle}>{item.title}</span>
-                <span className={styles.navItemSnippet}>{item.shortDesc}</span>
-              </div>
-
-              <span className={styles.navArrow} aria-hidden="true">
-                →
-              </span>
+              <span className={styles.navItemTitle}>{item.title}</span>
             </button>
           );
         })}
@@ -137,10 +126,10 @@ export default function Skiper60SideNav() {
         <AnimatePresence mode="wait">
           <motion.div
             key={activeItem.id}
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
             className={styles.contentCard}
           >
             <div>
@@ -152,12 +141,7 @@ export default function Skiper60SideNav() {
                 <span className={styles.contentIndex}>0{activeIdx + 1} / 06</span>
               </div>
 
-              <h3 className={styles.contentTitle}>
-                <span style={{ marginRight: '0.65rem', color: 'var(--nyx-blue)' }}>
-                  {activeItem.icon}
-                </span>
-                {activeItem.title}
-              </h3>
+              <h3 className={styles.contentTitle}>{activeItem.title}</h3>
 
               <p className={styles.contentDesc}>{activeItem.fullDesc}</p>
             </div>
