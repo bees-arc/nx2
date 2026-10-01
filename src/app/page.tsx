@@ -66,11 +66,11 @@ export default function Home() {
 
 
       {/* ─── WHY NYX: VALUE PROPOSITION ─── */}
-      <section className="section section--dark">
-        <div className="container">
-          <div className={styles.whyHeader}>
+      <section className="section section--dark" style={{ paddingTop: '4rem', paddingBottom: '4rem', paddingLeft: '1.5rem', paddingRight: '1.5rem' }}>
+        <div style={{ maxWidth: '1600px', width: '100%', margin: '0 auto' }}>
+          <div className={styles.whyHeader} style={{ marginBottom: '1.75rem' }}>
             <span className="section-label section-label--dark">Why NYX</span>
-            <h2 className="t-h2" style={{ maxWidth: '640px' }}>
+            <h2 className="t-h2" style={{ maxWidth: '720px' }}>
               Not just another agency.<br />A different way of thinking.
             </h2>
           </div>
