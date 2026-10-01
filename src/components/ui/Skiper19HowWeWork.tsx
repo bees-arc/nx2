@@ -117,7 +117,7 @@ export default function Skiper19HowWeWork() {
           <span className="section-label section-label--dark">Our Approach</span>
           <h2 className="t-h2" style={{ maxWidth: '700px' }}>
             How we work. <br />
-            <span style={{ color: 'var(--dark-muted-text, #8A8A84)' }}>Built for momentum.</span>
+            <span style={{ color: 'var(--white, #ffffff)' }}>Built for momentum.</span>
           </h2>
           <p className="t-body-lg" style={{ color: '#8A8A84', maxWidth: '580px', marginTop: '1rem', lineHeight: '1.65' }}>
             Scroll down to experience our synchronized 4-card workflow. The dynamic stroke guides each milestone, connecting strategy to deployment.
