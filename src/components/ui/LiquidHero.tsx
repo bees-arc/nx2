@@ -37,7 +37,7 @@ export default function LiquidHero({
         </h1>
 
         <div className={styles.heroMetaBar}>
-          <div className={styles.metaGroup}>
+          <div className={`${styles.metaGroup} ${styles.hideOnMobile}`}>
             <p className={styles.metaItem}>
               Colombo, LK <br />
               <span className={styles.metaItemMuted}>&amp; Worldwide</span>
@@ -49,15 +49,15 @@ export default function LiquidHero({
           </div>
 
           <div className={styles.actionGroup}>
-            <p className={styles.metaItem}>
+            <p className={`${styles.metaItem} ${styles.hideOnMobile}`}>
               Next.js &amp; UI/UX <br />
               <span className={styles.metaItemMuted}>100% Custom Code</span>
             </p>
-            <p className={styles.metaItem}>
+            <p className={`${styles.metaItem} ${styles.hideOnMobile}`}>
               Core Web Vitals <br />
               <span className={styles.metaItemMuted}>Sub-Second Fast</span>
             </p>
-            <Link href="/contact" className={styles.ctaBtn}>
+            <Link href="/contact" className={`${styles.ctaBtn} ${styles.hideOnMobile}`}>
               Start a Project
               <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                 <path

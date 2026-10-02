@@ -220,3 +220,22 @@
     justify-content: center !important;
   }
 }
+
+@media (max-width: 480px) {
+  .section {
+    padding: 3rem 0 4rem;
+  }
+
+  .header {
+    margin-bottom: 2rem;
+    padding: 0 0.25rem;
+  }
+
+  .stepCard {
+    padding: 1.25rem;
+  }
+
+  .cardsStack {
+    gap: 1rem;
+  }
+}

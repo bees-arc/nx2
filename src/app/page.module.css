@@ -416,6 +416,11 @@
   padding-bottom: 3.5rem;
 }
 
+/* Desktop-only shelf: hide on mobile */
+.shelfDesktopOnly {
+  display: block;
+}
+
 .workGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -913,17 +918,34 @@
   .finalCtaVisual { margin-top: 1rem; }
 }
 
+/* ─── MOBILE (≤768px) ─── */
 @media (max-width: 768px) {
+  /* === HIDE GALLERY SECTION ON MOBILE === */
+  .workHeaderSection { display: none; }
+  .shelfSection { display: none; }
+  .shelfDesktopOnly { display: none; }
+
+  /* === GENERAL SECTION SPACING === */
   .workSection {
     height: auto;
     min-height: auto;
     padding-top: 3rem;
     padding-bottom: 3rem;
   }
+
+  /* === HERO STATS === */
   .heroStats { flex-direction: column; align-items: flex-start; gap: 1.25rem; }
   .statDivider { display: none; }
+
+  /* === SERVICES HEADER === */
   .servicesHeader { flex-direction: column; align-items: flex-start; }
-  .workHeader { flex-direction: column; align-items: flex-start; }
+
+  /* === WORK HEADER === */
+  .workHeader { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .workHeaderMeta { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .workHeaderSub { max-width: 100%; }
+
+  /* === GRIDS === */
   .workGrid { grid-template-columns: 1fr; }
   .workCardFull { grid-column: unset; }
   .whyGrid { grid-template-columns: 1fr; }
@@ -931,12 +953,36 @@
   .approachStep { border-left: none; padding-left: 0; border-top: 1.5px solid var(--light-gray); padding-top: 2rem; }
   .approachStep:first-child { border-top: none; padding-top: 0; }
   .industriesList { grid-template-columns: 1fr 1fr; }
-  .finalCtaInner { text-align: center; align-items: center; }
-  .finalCtaButtons { justify-content: center; }
+
+  /* === WHY HEADER === */
+  .whyHeader { margin-bottom: 2rem; }
+  .whyFullStrip { padding: 1.5rem 0; }
+
+  /* === SPOTLIGHT === */
+  .spotlightGrid { grid-template-columns: 1fr; }
+  .spotlightBlock { padding: 1.25rem; }
+  .spotlightRight { padding: 1.25rem; }
+
+  /* === FINAL CTA === */
+  .finalCta { padding: 4rem 0; }
+  .finalCtaInner { flex-direction: column; text-align: center; align-items: center; }
+  .finalCtaButtons { justify-content: center; flex-wrap: wrap; }
+  .finalCtaVisual { display: none; }
+
+  /* === MARQUEE === */
+  .marqueeItem { padding: 0 1rem; font-size: 0.8125rem; }
 }
 
+/* ─── SMALL MOBILE (≤480px) ─── */
 @media (max-width: 480px) {
   .heroCtas { flex-direction: column; width: 100%; }
   .heroCtas .btn { width: 100%; justify-content: center; }
   .industriesList { grid-template-columns: 1fr; }
+
+  /* Tighter section padding */
+  .workHeaderSection { padding: 2.5rem 0 1.5rem; }
+  .shelfSection { padding-bottom: 2rem; }
+
+  /* Spotlight full width blocks */
+  .spotlightBlock, .spotlightRight { padding: 1rem; }
 }

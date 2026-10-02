@@ -12,18 +12,19 @@ interface GalleryItem {
 }
 
 const defaultItems: GalleryItem[] = [
-  { id: 1, label: "Aurora Wellness Sanctuary", year: "2024", image: "/images/projects/aurora-spa.jpg" },
-  { id: 2, label: "The Grand Haven Hotel", year: "2024", image: "/images/projects/grand-haven-hotel.svg" },
-  { id: 3, label: "Nexus Medical Center", year: "2024", image: "/images/projects/nexus-medical-center.svg" },
-  { id: 4, label: "Kuro Fine Dining & Lounge", year: "2024", image: "/images/projects/kuro-dining-lounge.svg" },
-  { id: 5, label: "PureSpark Eco Cleaning Co", year: "2024", image: "/images/projects/purespark-cleaning.svg" },
-  { id: 6, label: "Vanguard Athletic Club", year: "2024", image: "/images/projects/vanguard-athletics.svg" },
-  { id: 7, label: "Elysian Luxury Estates", year: "2024", image: "/images/projects/elysian-estates.svg" },
-  { id: 8, label: "Velvet Roast Coffee & Bakery", year: "2024", image: "/images/projects/velvet-roast-cafe.svg" },
-  { id: 9, label: "Radiance Dental Studio", year: "2024", image: "/images/projects/radiance-dental.svg" },
-  { id: 10, label: "Apex Wealth Terminal", year: "2024", image: "/images/projects/apex-fintech.jpg" },
-  { id: 11, label: "Aura Neural AI Platform", year: "2024", image: "/images/projects/aura-neural-ai.jpg" }
+  { id: 1,  label: "Aurora Wellness Sanctuary",  year: "2024", image: "/images/projects/aurora-spa.jpg" },
+  { id: 2,  label: "The Grand Haven Hotel",       year: "2024", image: "/images/projects/hotel-haven.jpg" },
+  { id: 3,  label: "Nexus Medical Center",        year: "2024", image: "/images/projects/nexus-medical.jpg" },
+  { id: 4,  label: "Kuro Fine Dining & Lounge",   year: "2024", image: "/images/projects/kuro-dining.jpg" },
+  { id: 5,  label: "PureSpark Eco Cleaning Co",   year: "2024", image: "/images/projects/pure-clean.jpg" },
+  { id: 6,  label: "Vanguard Athletic Club",      year: "2024", image: "/images/projects/gym-fitness.jpg" },
+  { id: 7,  label: "Elysian Luxury Estates",      year: "2024", image: "/images/projects/real-estate.jpg" },
+  { id: 8,  label: "Velvet Roast Coffee & Bakery",year: "2024", image: "/images/projects/cafe-roast.jpg" },
+  { id: 9,  label: "Radiance Dental Studio",      year: "2024", image: "/images/projects/dental-clinic.jpg" },
+  { id: 10, label: "Apex Wealth Terminal",        year: "2024", image: "/images/projects/apex-fintech.jpg" },
+  { id: 11, label: "Aura Neural AI Platform",     year: "2024", image: "/images/projects/aura-neural-ai.jpg" },
 ];
+
 
 interface HoverExpandGalleryProps {
   projects?: unknown;

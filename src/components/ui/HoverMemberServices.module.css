@@ -317,3 +317,28 @@
     font-size: 0.6rem;
   }
 }
+
+@media (max-width: 480px) {
+  .skiper6Section {
+    padding: 2.5rem 0.75rem 2rem;
+  }
+
+  .mainTitle {
+    font-size: clamp(1.8rem, 10vw, 3.2rem);
+  }
+
+  .typographyViewport {
+    height: 40vw;
+    margin-bottom: 1.5rem;
+  }
+
+  .avatarCard {
+    width: 64px;
+    height: 72px;
+    padding: 5px 3px 5px;
+  }
+
+  .cardServiceLabel {
+    font-size: 0.5rem;
+  }
+}
