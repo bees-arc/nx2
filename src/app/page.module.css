@@ -380,22 +380,27 @@
 /* ─── SELECTED WORK TOPIC (Outside the shelf) ─── */
 
 .workHeaderSection {
-  padding: 5rem 0 2.25rem;
+  padding: 2.25rem 0;
   background: var(--off-white);
   border-top: 1px solid var(--light-gray);
 }
 
 .workHeader {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 2rem;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 2.25rem;
+  margin: 0 auto;
+  flex-wrap: nowrap;
+  width: 100%;
 }
 
-.workHeaderMeta {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
+.workHeaderTitle {
+  font-size: clamp(1.75rem, 2.4vw, 2.5rem) !important;
+  margin: 0;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .workHeaderSub {
@@ -404,6 +409,12 @@
   max-width: 320px;
   line-height: 1.45;
   margin: 0;
+  flex-shrink: 1;
+}
+
+.workHeaderBtn {
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 /* ─── BOOKSHELF SECTION ─── */
@@ -941,8 +952,7 @@
   .servicesHeader { flex-direction: column; align-items: flex-start; }
 
   /* === WORK HEADER === */
-  .workHeader { flex-direction: column; align-items: flex-start; gap: 1rem; }
-  .workHeaderMeta { flex-direction: column; align-items: flex-start; gap: 1rem; }
+  .workHeader { flex-direction: column; align-items: center; text-align: center; gap: 0.5rem; }
   .workHeaderSub { max-width: 100%; }
 
   /* === GRIDS === */

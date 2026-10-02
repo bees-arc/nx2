@@ -44,18 +44,13 @@ export default function Home() {
       <section className={styles.workHeaderSection}>
         <div className="container">
           <div className={styles.workHeader}>
-            <div>
-              <span className="section-label">Selected Work</span>
-              <h2 className="t-h2">Built with purpose.</h2>
-            </div>
-            <div className={styles.workHeaderMeta}>
-              <p className={styles.workHeaderSub}>
-                Explore our project library. Hover any spine to pull out the case study.
-              </p>
-              <Link href="/work" className="btn btn--outline">
-                View All Work →
-              </Link>
-            </div>
+            <h2 className={`t-h2 ${styles.workHeaderTitle}`}>Built with purpose.</h2>
+            <p className={styles.workHeaderSub}>
+              Explore our project library. Hover any spine to pull out the case study.
+            </p>
+            <Link href="/work" className={`btn btn--outline ${styles.workHeaderBtn}`}>
+              View All Work →
+            </Link>
           </div>
         </div>
       </section>
