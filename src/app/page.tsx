@@ -41,6 +41,7 @@ export default function Home() {
       />
 
       {/* ─── SELECTED WORK TOPIC (Outside the shelf section) ─── */}
+      {/* 
       <section className={styles.workHeaderSection}>
         <div className="container">
           <div className={styles.workHeader}>
@@ -55,11 +56,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── BOOKSHELF GALLERY SECTION ─── */}
       <section className={styles.shelfSection}>
         <HoverExpandGallery projects={featured} />
-        
       </section>
+      */}
 
 
       {/* ─── WHY NYX: VALUE PROPOSITION ─── */}
@@ -90,7 +90,7 @@ export default function Home() {
       <section className="section section--ink">
         <div className="container">
           <div className={styles.spotlightHeader}>
-            <span className="section-label section-label--neutral">Featured Result</span>
+            {/* <span className="section-label section-label--neutral">Featured Result</span> */}
             <h2 className="t-h2" style={{ maxWidth: '620px' }}>
               How NYX-SaaS transformed Meridian Law's digital presence.
             </h2>

@@ -31,7 +31,8 @@ export default function ContactForm() {
   const [selectedServices, setSelectedServices] = useState<string[]>(['Website Design']);
   const [selectedBudget, setSelectedBudget] = useState<string>('$10k — $25k');
   const [selectedTimeline, setSelectedTimeline] = useState<string>('Within 2 weeks (Standard Sprint)');
-  const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success'>('idle');
+  const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState<string>('');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -46,12 +47,61 @@ export default function ContactForm() {
     );
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setErrorMessage('');
+
+    const accessKey =
+      process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || 'd010993d-e2c1-49e2-b456-f6031f4b70f3';
+    if (!accessKey) {
+      setFormStatus('error');
+      setErrorMessage(
+        'Web3Forms Access Key is missing. Please add NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY to your .env.local file to receive messages.'
+      );
+      return;
+    }
+
     setFormStatus('submitting');
-    setTimeout(() => {
-      setFormStatus('success');
-    }, 1000);
+
+    try {
+      const payload = {
+        access_key: accessKey,
+        subject: `New Project Inquiry from ${formData.name || 'Website'} ${formData.company ? `(${formData.company})` : ''}`,
+        from_name: formData.name || 'NYX-SaaS Studio Inquiry',
+        name: formData.name,
+        email: formData.email,
+        company: formData.company || 'Not provided',
+        website: formData.website || 'Not provided',
+        services: selectedServices.join(', '),
+        budget: selectedBudget,
+        timeline: selectedTimeline,
+        message: formData.details,
+        botcheck: '',
+      };
+
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        setFormStatus('success');
+      } else {
+        setFormStatus('error');
+        setErrorMessage(
+          result.message || 'Unable to transmit inquiry to Web3Forms. Please verify your Access Key and try again.'
+        );
+      }
+    } catch {
+      setFormStatus('error');
+      setErrorMessage('Network connection error. Please check your network and try again.');
+    }
   };
 
   if (formStatus === 'success') {
@@ -60,7 +110,7 @@ export default function ContactForm() {
         <div className={styles.successIcon}>✓</div>
         <h3 className={styles.successTitle}>Inquiry Transmitted</h3>
         <p className={styles.successDesc}>
-          Thank you, {formData.name || 'there'}. We have received your project details.
+          Thank you, {formData.name || 'there'}. We have received your project details via Web3Forms.
           Our team will analyze your requirements and get back to you within 24 business hours.
         </p>
         <button
@@ -68,6 +118,7 @@ export default function ContactForm() {
           className="btn btn--outline"
           onClick={() => {
             setFormStatus('idle');
+            setErrorMessage('');
             setFormData({ name: '', email: '', company: '', website: '', details: '' });
           }}
         >
@@ -224,14 +275,31 @@ export default function ContactForm() {
         </div>
       </div>
 
+      {/* Honeypot Spam Protection for Web3Forms */}
+      <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} tabIndex={-1} autoComplete="off" />
+
       {/* ─── SUBMISSION ─── */}
       <div className={styles.submitRow}>
+        {formStatus === 'error' && (
+          <div className={styles.errorBox} role="alert">
+            <span className={styles.errorIcon}>!</span>
+            <span className={styles.errorText}>{errorMessage}</span>
+          </div>
+        )}
+
         <button
           type="submit"
           disabled={formStatus === 'submitting'}
           className="btn btn--primary btn--lg"
         >
-          {formStatus === 'submitting' ? 'Transmitting RFP...' : 'Submit Project Brief →'}
+          {formStatus === 'submitting' ? (
+            <>
+              <span className={styles.spinner} />
+              <span>Transmitting Brief...</span>
+            </>
+          ) : (
+            'Submit Project Brief →'
+          )}
         </button>
 
         <div className={styles.submitGuarantees}>
