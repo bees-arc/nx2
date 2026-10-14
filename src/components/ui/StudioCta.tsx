@@ -1,6 +1,5 @@
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import styles from './StudioCta.module.css';
 
 interface StudioCtaProps {
@@ -72,25 +71,6 @@ export default function StudioCta({
             <div className={styles.metaItem}>
               <span className={styles.metaIcon}>✓</span>
               <span>Full Code & IP Ownership</span>
-            </div>
-          </div>
-        </div>
-
-        <div className={styles.visualCol}>
-          <div className={styles.logoCardWrapper}>
-            <div className={styles.logoCard}>
-              <Image
-                src="/images/favicon.jpeg"
-                alt="NYX-SaaS Emblem"
-                width={380}
-                height={380}
-                className={styles.logoImg}
-                priority
-              />
-              <div className={styles.logoBadge}>
-                <span className={styles.logoBadgeDot} />
-                <span className={styles.logoBadgeText}>NYX-SAAS // 2-WEEK SPRINT FRAMEWORK</span>
-              </div>
             </div>
           </div>
         </div>
