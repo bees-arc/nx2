@@ -60,10 +60,10 @@ export default function Footer() {
           <div className={styles.brand}>
             <Link href="/" className={styles.logo}>
               <Image
-                src="/images/logo-dark.png"
+                src="/images/nyx-logo.png"
                 alt="NYX-SaaS"
-                width={120}
-                height={49}
+                width={130}
+                height={53}
                 className={styles.logoImg}
               />
             </Link>

@@ -41,19 +41,11 @@ export default function Header() {
         <div className={styles.inner}>
           <Link href="/" className={styles.logo} aria-label="NYX-SaaS – Home">
             <Image
-              src="/images/logo-dark.png"
+              src="/images/nyx-logo.png"
               alt="NYX-SaaS"
-              width={116}
-              height={47}
-              className={`${styles.logoImg} ${styles.logoDark}`}
-              priority
-            />
-            <Image
-              src="/images/logo-light.png"
-              alt="NYX-SaaS"
-              width={116}
-              height={47}
-              className={`${styles.logoImg} ${styles.logoLight}`}
+              width={120}
+              height={48}
+              className={styles.logoImg}
               priority
             />
           </Link>
